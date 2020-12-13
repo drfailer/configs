@@ -1,0 +1,12 @@
+" Theme :
+colorscheme dracula
+
+
+" pdf opening :
+filextype *.pdf xreader
+fileviewer *.pdf xreader-previewer
+
+
+" image opening
+filextype *.bmp, *.png, *.jpeg, *.jpg, *.xpm xdg-open
+fileviewer  *.bmp, *.png, *.jpeg, *.jpg, *.xpm identify

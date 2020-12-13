@@ -1,0 +1,13 @@
+#+title: Things to do
+#+author: CHASSAGNOL Rémi
+#+description: org-mode agenda and TODO list
+
+* Tasks
+** TODO [#A] Défi Turing
+   SCHEDULED: <2021-01-30 Sat 23:00>
+- [ ] Exercice 13
+- [ ] Exercice 50
+- [ ] Exercice 89
+site: https://www.apprendre-en-ligne.net/turing/enonces.php
+* Homeworks
+* Other

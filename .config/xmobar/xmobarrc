@@ -1,0 +1,33 @@
+Config { font = "xft:Inconsolata LGC:size=10:style=Regular"
+       , additionalFonts = [ "xft:FontAwesome:pixelsize=14, Hack Nerd Font Mono:pixelsize=13"
+                           ,"xft:FontAwesome:size=8"
+                           , "xft:FiraMono Nerd Font Regular:pixelsize=10:antialias=true:hinting=true"
+                           , "xft:FontAwesome:pixelsize=13"
+                           ]
+       , borderColor = "#28252a"
+       , border = TopB
+       , bgColor = "#282c34"
+       , fgColor = "#bfbaba"
+       , alpha = 255
+       , position = TopW L 100
+       , textOffset = -1
+       , iconOffset = -1
+       , lowerOnStart = True
+       , pickBroadest = False
+       , persistent = False
+       , hideOnStart = False
+       , iconRoot = "."
+       , allDesktops = True
+       , overrideRedirect = True
+       , commands = [ Run Network "enp3s0" ["-t", " <rx>kb  <tx>kb"] 20
+                    , Run Cpu [ "-L", "3", "-H", "50" ,"--normal", "#c3e88d" ,"--high", "#f07178" ] 20
+                    , Run Memory ["-t" ,"Mem: <usedratio>%", ""] 20
+                    , Run Date "%a %b %_d %Y %H:%M" "date" 50
+                    , Run DiskU [("/", "<fn=2>\xf0c7</fn>  hdd: <free> free")] [] 60
+		    , Run UnsafeStdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = " <fn=1>%UnsafeStdinReader%</fn> }\
+       \{ | <fc=#a9a1e1><fn=2>  </fn> %cpu%</fc> | <fc=#86dbb7><fn=2>  </fn> %memory%</fc> | <fc=#82AAFF> %disku% </fc> | <fc=#ffb86c>%enp3s0%</fc> | <fc=#ff5555><fn=2>  </fn> %date%</fc> "
+       }
