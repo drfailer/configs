@@ -758,7 +758,7 @@
               (git-gutter:clear))
    :color blue))
 #+END_SRC
-* Projectile
+* Projectile and hydra
 #+BEGIN_SRC emacs-lisp
   (use-package projectile
     :ensure t
@@ -994,6 +994,18 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
 *** Remove C-z
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-z"))
+#+END_SRC
+*** Mouving
+#+BEGIN_SRC emacs-lisp
+  (defun mvup() (interactive)
+	 (previous-line 2)
+	 )
+  (global-set-key (kbd "M-p") 'mvup)
+
+  (defun mvdown() (interactive)
+	 (next-line 2)
+	 )
+  (global-set-key (kbd "M-n") 'mvdown)
 #+END_SRC
 ** Asynchrone
 #+BEGIN_SRC emacs-lisp
