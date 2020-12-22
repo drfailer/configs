@@ -7,9 +7,9 @@ set smtp_url  = smtp://remi.chassagnol@etu.uca.fr@smtp.uca.fr:587/
 set folder    = imaps://imap.uca.fr/
 # set spoolfile = imaps://imap.uca.fr/INBOX
 set spoolfile = "+INBOX" 
-set record = "+Sent"
-set trash = "+Trach"
-set postponed = "Drafts"
+set record = "+Envoyé"
+set trash = "+Corbeille"
+set postponed = "+Brouillons"
 mailboxes =INBOX =Sent =Trash =Drafts =Other
 
 # Source other addresses :
