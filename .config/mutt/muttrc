@@ -1,0 +1,46 @@
+# Primary mail address :
+set from      = remi.chassagnol@etu.uca.fr
+set realname  = "rémi chassagnol"
+set imap_user = remi.chassagnol@etu.uca.fr
+set smtp_url  = smtp://remi.chassagnol@etu.uca.fr@smtp.uca.fr:587/
+
+set folder    = imaps://imap.uca.fr/
+# set spoolfile = imaps://imap.uca.fr/INBOX
+set spoolfile = "+INBOX" 
+set record = "+Sent"
+set trash = "+Trach"
+set postponed = "Drafts"
+mailboxes =INBOX =Sent =Trash =Drafts =Other
+
+# Source other addresses :
+# source ~/.config/mutt/drfailer.muttrc
+
+# Mutt files :
+set header_cache     =~/.mutt/cache/headers
+set message_cachedir =~/.mutt/cache/bodies
+set certificate_file =~/.mutt/certificates
+
+# ================  Composition  ====================
+set editor = "vim"      # Set your favourite editor.
+set edit_headers = yes  # See the headers when editing
+set charset = UTF-8     # value of $LANG; also fallback for send_charset
+
+# Theme :
+# source ~/.config/mutt/dracula.muttrc
+source ~/.config/mutt/theme.muttrc
+
+
+# Sidebar :
+set sidebar_visible
+# Use 'B' to switch the Sidebar on and off :
+bind index,pager B sidebar-toggle-visible
+set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+set mail_check_stats
+
+# Sidebar and mail switch :
+bind index,pager \CP sidebar-prev
+# Ctrl-Shift-P – Previous Mailbox
+bind index,pager \CN sidebar-next
+# Ctrl-Shift-N – Next Mailbox
+bind index,pager \CO sidebar-open
+# Ctrl-Shift-O – Open Highlighted Mailbox

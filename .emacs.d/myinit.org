@@ -967,7 +967,7 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
 (define-key helm-find-files-map (kbd "C-f") 'helm-execute-persistent-action)
 #+END_SRC
 * Tweaks
-** Shortcuts
+** Keys
 *** yes/no
 #+BEGIN_SRC emacs-lisp
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -983,12 +983,12 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
 *** Mouving
 #+BEGIN_SRC emacs-lisp
   (defun mvup() (interactive)
-	 (previous-line 2)
+	 (previous-line 3)
 	 )
   (global-set-key (kbd "M-p") 'mvup)
 
   (defun mvdown() (interactive)
-	 (next-line 2)
+	 (next-line 3)
 	 )
   (global-set-key (kbd "M-n") 'mvdown)
 #+END_SRC
