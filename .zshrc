@@ -106,7 +106,7 @@ source $ZSH/oh-my-zsh.sh
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 alias lll='exa -al --color=always --group-directories-first'
-alias discord='/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=discord com.discordapp.Discord'
+alias joke='fortune | cowsay | lolcat'
 
 eval "$(starship init zsh)"
 

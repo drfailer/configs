@@ -96,15 +96,6 @@
  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
  #+END_SRC
 ** Theme
-#+BEGIN_SRC
-(use-package dracula-theme
-:config
-(setq dracula-alternate-mode-line-and-minibuffer t)
-)
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(load-theme 'dracula t)
-#+END_SRC
-
 #+BEGIN_SRC emacs-lisp
   (use-package doom-themes
     :config
@@ -221,11 +212,8 @@
 
  (global-set-key (kbd "C-c d") 'switch-dictionary-fr-en)
  #+END_SRC
-*** Correction
+*** flyspell and highlights
  #+BEGIN_SRC emacs-lisp
- ;; (add-hook 'prog-mode-hook 'flyspell-prog-mode) ;; if you write text with a
- ;; lot of text, it is possible to activte it, the problem is that it suggests errors
- ;; when you put code inside ""
  (global-set-key (kbd "C-c f") 'flyspell-check-previous-highlighted-word)
  (add-hook 'text-mode-hook 'flyspell-mode)
  (add-hook 'prog-mode-hook 'flyspell-prog-mode)
@@ -330,10 +318,6 @@
  #+END_SRC
 *** Tags
  #+BEGIN_SRC emacs-lisp
-   ;;;  Jonas.Jarnestrom<at>ki.ericsson.se A smarter               
-   ;;;  find-tag that automagically reruns etags when it cant find a               
-   ;;;  requested item and then makes a new try to locate it.                      
-   ;;;  Fri Mar 15 09:52:14 2002    
  (defadvice find-tag (around refresh-etags activate)
    "Rerun etags and reload tags if tag not found and redo find-tag.              
     If buffer is modified, ask about save before running etags."
@@ -353,7 +337,7 @@
    (let ((tags-revert-without-query t))  ; don't query, revert silently          
      (visit-tags-table default-directory nil)))
  #+END_SRC
-*** Reformatage
+*** Clang-format
  #+BEGIN_SRC emacs-lisp
    (use-package clang-format+
      :ensure t)
@@ -414,17 +398,35 @@
              ;;hide/show code-block
              (hs-minor-mode t)))
  #+END_SRC
-*** lisp
+*** Emacs-lisp
+**** Company for lisp
  #+BEGIN_SRC emacs-lisp
- ;; Paredit pour la gestion des parenthéses en lisp
- ;; setup paredit
- (use-package paredit
+ (add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
+ (add-hook 'emacs-lisp-mode-hook 'yas-minor-mode)
+ (add-hook 'emacs-lisp-mode-hook 'company-mode)
+
+ (use-package slime
+   :ensure t
+   :config
+   (setq inferior-lisp-program "/usr/bin/sbcl")
+   (setq slime-contribs '(slime-fancy)))
+
+ (use-package slime-company
    :ensure t
    :init
-   (dolist (hook '(emacs-lisp-mode-hook lisp-mode-hook clojure-mode-hook scheme-mode-hook))
-     (add-hook hook 'paredit-mode))
-   :diminish paredit-mode)
+     (require 'company)
+     (slime-setup '(slime-fancy slime-company)))
  #+END_SRC
+**** Paredit
+  #+BEGIN_SRC emacs-lisp
+  ;; setup paredit
+  (use-package paredit
+    :ensure t
+    :init
+    (dolist (hook '(emacs-lisp-mode-hook lisp-mode-hook clojure-mode-hook scheme-mode-hook))
+      (add-hook hook 'paredit-mode))
+    :diminish paredit-mode)
+  #+END_SRC
 *** Python
  #+BEGIN_SRC emacs-lisp
  (add-hook 'python-mode-hook 'yas-minor-mode)
@@ -455,24 +457,6 @@
            :config
            (venv-initialize-interactive-shells)
            (venv-initialize-eshell))
- #+END_SRC
-*** Emacs-lisp
- #+BEGIN_SRC emacs-lisp
- (add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
- (add-hook 'emacs-lisp-mode-hook 'yas-minor-mode)
- (add-hook 'emacs-lisp-mode-hook 'company-mode)
-
- (use-package slime
-   :ensure t
-   :config
-   (setq inferior-lisp-program "/usr/bin/sbcl")
-   (setq slime-contribs '(slime-fancy)))
-
- (use-package slime-company
-   :ensure t
-   :init
-     (require 'company)
-     (slime-setup '(slime-fancy slime-company)))
  #+END_SRC
 *** Bash
  #+BEGIN_SRC emacs-lisp
@@ -582,6 +566,7 @@
  #+END_SRC
 * Orgmode
 ** Babel
+*** Global config
 #+BEGIN_SRC emacs-lisp
 (org-babel-do-load-languages
    'org-babel-load-languages
@@ -609,6 +594,10 @@
      (sqlite     . t)))
 (setq org-babel-python-command "python3")
 #+END_SRC
+*** Fix eval
+ #+BEGIN_SRC emacs-lisp
+ (setq org-confirm-babel-evaluate nil)
+ #+END_SRC
 ** Bullets
 #+BEGIN_SRC emacs-lisp
 (use-package org-bullets
@@ -616,17 +605,13 @@
     :config  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
     :diminish)
 #+END_SRC
-** Points
+** Replace points
 #+BEGIN_SRC emacs-lisp
 (setq org-ellipsis " ⬎")
 #+END_SRC
-** Mise en forme
+** Tab format
 #+BEGIN_SRC emacs-lisp
 (setq org-src-tab-acts-natively t)
-#+END_SRC
-** Execution code
-#+BEGIN_SRC emacs-lisp
-(setq org-confirm-babel-evaluate nil)
 #+END_SRC
 ** Export
 #+BEGIN_SRC emacs-lisp
@@ -639,13 +624,13 @@
 (use-package ox-twbs
 :ensure t)
 #+END_SRC
-** Fin de ligne
+** Visual line
 #+BEGIN_SRC emacs-lisp
 (add-hook 'org-mode-hook
           '(lambda ()
              (visual-line-mode 1)))
 #+END_SRC
-** Fix
+** Navigator
 #+BEGIN_SRC emacs-lisp
    '(org-file-apps
     (quote
@@ -681,7 +666,7 @@
 (setq magit-status-margin
       '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18))
 #+END_SRC
-** Git-gutter
+** Git-gutter :unused:
 #+BEGIN_SRC 
   (use-package git-gutter
   :ensure t
@@ -690,7 +675,7 @@
 
 (global-set-key (kbd "M-g M-g") 'hydra-git-gutter/body)
 #+END_SRC
-** Time-machine
+** Time-machine :unused:
 #+BEGIN_SRC 
   (use-package git-timemachine
   :ensure t
@@ -1041,17 +1026,6 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
 (if (not (file-exists-p my-backup-dir))
     (mkdir my-backup-dir t))
 #+END_SRC
-** Auto-revert
-#+BEGIN_SRC 
-(use-package autorevert
-  :ensure t
-  :diminish
-  :config
-  (setq auto-revert-verbose t)
-  :hook (after-init-hook . global-auto-revert-mode))
-
-  (setq global-auto-revert-mode t)
-#+END_SRC
 ** Clean hitory
 #+BEGIN_SRC emacs-lisp
 (setq history-delete-duplicates t)
@@ -1060,7 +1034,7 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
 #+BEGIN_SRC emacs-lisp
 (server-start)
 #+END_SRC
-* Gadget
+* Gadgets
 ** Processus
 #+BEGIN_SRC emacs-lisp
 (use-package proced
@@ -1070,4 +1044,25 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
 (setq proced-auto-update-interval 1)
 (setq proced-descend t)
 (setq proced-filter 'user))
+#+END_SRC
+* Unused packages
+** Dracula theme :unused:
+#+BEGIN_SRC
+(use-package dracula-theme
+:config
+(setq dracula-alternate-mode-line-and-minibuffer t)
+)
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+(load-theme 'dracula t)
+#+END_SRC
+** Auto-revert :unused:
+#+BEGIN_SRC 
+(use-package autorevert
+  :ensure t
+  :diminish
+  :config
+  (setq auto-revert-verbose t)
+  :hook (after-init-hook . global-auto-revert-mode))
+
+  (setq global-auto-revert-mode t)
 #+END_SRC

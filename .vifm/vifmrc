@@ -3,7 +3,7 @@ colorscheme dracula
 
 
 " pdf opening :
-filextype *.pdf xreader
+filextype *.pdf zathura
 fileviewer *.pdf xreader-previewer
 
 
