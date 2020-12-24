@@ -4,15 +4,20 @@
 "   | (_| | |  |  _| (_| | | |  __/ |   
 "    \__,_|_|  |_|  \__,_|_|_|\___|_|
 
+" mapleader:
+let mapleader =" "
+
 "basic settings
 syntax on
 set number relativenumber
 set shiftround
 set ignorecase
 set encoding=utf-8
+set t_Co=16
 
-" Autocompletion :
+" Autocompletion file:
 set wildmode=longest,list,full
+set wildmenu
 
 " Split fix :
 set splitbelow splitright
@@ -22,6 +27,10 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
+
+" Spell checking :
+map <F6> :setlocal spell! spelllang=en_us<CR>
+" map <F7> :set spelllang=fr<CR> need fix
 
 " Map replace all :
 map S :%s//g<Left><Left>
@@ -35,8 +44,49 @@ set autoindent
 set backspace=indent,eol,start
 set listchars=tab:\|\
 
+" Tabbing:
+map <leader>t :tabnew<CR>
+map <leader><tab> :tabnext<CR>
+
+" Finding file
+set path+=**
+
+" AUTOCOMPLITION:
+" - ^x^n for just this file
+" - ^x^f for file name
+" - ^n for just complete
+" - ^n and ^p to select
+
+" jump points:
+inoremap <tab><tab> <Esc>/<++><Enter>"_c4l
+
+" Brackets:
+inoremap {{ {<Enter><Enter>}<Esc>ki<tab>
+
+"=================================================================================
+" Snippets:
+"=================================================================================
+" C:
+" Loops:
+autocmd Filetype c inoremap if<tab> if<Space>()<Space>{<Enter><Enter>}<Enter><++><Esc>kki<tab><++><Esc>kF(a
+autocmd Filetype c inoremap for<tab> for<Space>()<Space>{<Enter><Enter>}<Enter><++><Esc>kki<tab><++><Esc>kF(a
+autocmd Filetype c inoremap while<tab> while<Space>()<Space>{<Enter><Enter>}<Enter><++><Esc>kki<tab><++><Esc>kF(a
+" main:
+autocmd Filetype c inoremap main<tab> int<Space>main<Space>(int<Space>argc,<Space>char**<Space>argv)<Space>{<Enter>I<Enter>return<Space>0;<Enter>}<Esc>?I<Enter>C
+" Libs
+autocmd Filetype c inoremap io<tab> #include<Space><stdio.h>
+autocmd Filetype c inoremap std<tab> #include<Space><stdlib.h>
+autocmd Filetype c inoremap str<tab> #include<Space><string.h>
+autocmd Filetype c inoremap incl<tab> #include<Space><><Enter><++><Esc>k0/<<Enter>a
+autocmd Filetype c inoremap incs<tab> #include<Space>""<Enter><++><Esc>k0/"<Enter>a
+
+"=================================================================================
+" Plugin config :
+"=================================================================================
+
 "NerdTree
 map <C-n> :NERDTreeToggle<CR>
 
-
-" Snippets :
+" Goyo :
+map <leader><leader> :Goyo<CR>
+map <leader>c :Goyo!<CR>

@@ -30,7 +30,7 @@ myBorderWidth   = 2
 myModMask       = mod4Mask
 
 myNormalBorderColor  = "#353a42"
-myFocusedBorderColor = "#4bc9ea"
+myFocusedBorderColor = "#5b4184"
 
 myWorkspaces :: [String]
 myWorkspaces = [ "\xf015","\xf121", "\xf07b", "\xf002", "\xf00b", "\xf1e0", "\xf001", "\xf03d", "\xf1de"]
