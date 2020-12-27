@@ -61,7 +61,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
     , ((modm              , xK_q     ), spawn "xmonad --recompile; xmonad --restart")
     , ((modm .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
-    , ((modm,               xK_d     ), spawn "gnome-terminal -- bash -c 'vifm'")
+    , ((modm,               xK_d     ), spawn "gnome-terminal -- bash -c 'ranger'")
     ]
     ++
     [((m .|. modm, k), windows $ f i)

@@ -96,6 +96,7 @@
  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
  #+END_SRC
 ** Theme
+*** Colorscheme
 #+BEGIN_SRC emacs-lisp
   (use-package doom-themes
     :config
@@ -112,6 +113,13 @@
 
     ;; Corrects (and improves) org-mode's native fontification.
     (doom-themes-org-config))
+#+END_SRC
+*** Transparency
+#+BEGIN_SRC emacs-lisp
+(set-background-color "#121214")
+;;(set-background-color "#1E2127")
+(set-frame-parameter (selected-frame) 'alpha '(85 50))
+(add-to-list 'default-frame-alist '(alpha 85 50))
 #+END_SRC
 * Tools
 ** Handy tools
@@ -649,9 +657,9 @@
 	'((sequence "TODO" "STARTED" "SUSPENDED" "|" "DONE" "CANCELED")))
 
   (setq org-todo-keyword-faces
-	'(("TODO" . org-warning) ("STARTED" . "yellow")
-	  ("CANCELED" . (:foreground "red" :weight bold))
-	  ("SUSPENDED" . (:foreground "blue" :weight bold))))
+	'(("TODO" . org-warning) ("STARTED" . "#f1fa8c")
+	  ("CANCELED" . (:foreground "#ff5555" :weight bold))
+	  ("SUSPENDED" . (:foreground "#6272a4" :weight bold))))
 #+END_SRC
 * Git
 ** Magit
@@ -745,94 +753,94 @@
 #+END_SRC
 * Projectile and hydra
 #+BEGIN_SRC emacs-lisp
-  (use-package projectile
-    :ensure t
-    :init
-    (projectile-mode 1)
-    (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-    :diminish)
-  (use-package helm-projectile
-    :ensure t
-    :config
-    (helm-projectile-on))
+    (use-package projectile
+      :ensure t
+      :init
+      (projectile-mode 1)
+      (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+      :diminish)
+    (use-package helm-projectile
+      :ensure t
+      :config
+      (helm-projectile-on))
 
-(use-package hydra 
-   :ensure hydra
-   :init 
-   (global-set-key
-   (kbd "C-* t")
-           (defhydra toggle (:color blue)
-             "toggle"
-             ("a" abbrev-mode "abbrev")
-             ("s" flyspell-mode "flyspell")
-             ("d" toggle-debug-on-error "debug")
-             ("c" fci-mode "fCi")
-             ("f" auto-fill-mode "fill")
-             ("t" toggle-truncate-lines "truncate")
-             ("w" whitespace-mode "whitespace")
-             ("q" nil "cancel")))
-   (global-set-key
-    (kbd "C-x j")
-    (defhydra gotoline 
-      ( :pre (linum-mode 1)
-             :post (linum-mode -1))
-      "goto"
-      ("t" (lambda () (interactive)(move-to-window-line-top-bottom 0)) "top")
-      ("b" (lambda () (interactive)(move-to-window-line-top-bottom -1)) "bottom")
-      ("m" (lambda () (interactive)(move-to-window-line-top-bottom)) "middle")
-      ("e" (lambda () (interactive)(end-of-buffer)) "end")
-      ("c" recenter-top-bottom "recenter")
-      ("n" next-line "down")
-      ("p" (lambda () (interactive) (forward-line -1))  "up")
-      ("g" goto-line "goto-line")
-      ))
-   )
+  (use-package hydra 
+     :ensure hydra
+     :init 
+     (global-set-key
+     (kbd "C-* t")
+	     (defhydra toggle (:color blue)
+	       "toggle"
+	       ("a" abbrev-mode "abbrev")
+	       ("s" flyspell-mode "flyspell")
+	       ("d" toggle-debug-on-error "debug")
+	       ("c" fci-mode "fCi")
+	       ("f" auto-fill-mode "fill")
+	       ("t" toggle-truncate-lines "truncate")
+	       ("w" whitespace-mode "whitespace")
+	       ("q" nil "cancel")))
+     (global-set-key
+      (kbd "C-x j")
+      (defhydra gotoline 
+	( :pre (linum-mode 1)
+	       :post (linum-mode -1))
+	"goto"
+	("t" (lambda () (interactive)(move-to-window-line-top-bottom 0)) "top")
+	("b" (lambda () (interactive)(move-to-window-line-top-bottom -1)) "bottom")
+	("m" (lambda () (interactive)(move-to-window-line-top-bottom)) "middle")
+	("e" (lambda () (interactive)(end-of-buffer)) "end")
+	("c" recenter-top-bottom "recenter")
+	("n" next-line "down")
+	("p" (lambda () (interactive) (forward-line -1))  "up")
+	("g" goto-line "goto-line")
+	))
+     )
 
-(defhydra hydra-projectile-other-window (:color teal)
-  "projectile-other-window"
-  ("f"  projectile-find-file-other-window        "file")
-  ("g"  projectile-find-file-dwim-other-window   "file dwim")
-  ("d"  projectile-find-dir-other-window         "dir")
-  ("b"  projectile-switch-to-buffer-other-window "buffer")
-  ("q"  nil                                      "cancel" :color blue))
+  (defhydra hydra-projectile-other-window (:color teal)
+    "projectile-other-window"
+    ("f"  projectile-find-file-other-window        "file")
+    ("g"  projectile-find-file-dwim-other-window   "file dwim")
+    ("d"  projectile-find-dir-other-window         "dir")
+    ("b"  projectile-switch-to-buffer-other-window "buffer")
+    ("q"  nil                                      "cancel" :color blue))
 
-(defhydra hydra-projectile (:color teal
-                            :hint nil)
+  (defhydra hydra-projectile (:color teal
+			      :hint nil)
+    "
+       PROJECTILE: %(projectile-project-root)
+
+       Find File            Search/Tags          Buffers                Cache
+  ------------------------------------------------------------------------------------------
+  _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache clear
+   _ff_: file dwim       _g_: update gtags      _b_: switch to buffer  _x_: remove known project
+   _fd_: file curr dir   _o_: multi-occur     _s-k_: Kill all buffers  _X_: cleanup non-existing
+    _r_: recent file                                               ^^^^_z_: cache current
+    _d_: dir
+
   "
-     PROJECTILE: %(projectile-project-root)
-
-     Find File            Search/Tags          Buffers                Cache
-------------------------------------------------------------------------------------------
-_s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache clear
- _ff_: file dwim       _g_: update gtags      _b_: switch to buffer  _x_: remove known project
- _fd_: file curr dir   _o_: multi-occur     _s-k_: Kill all buffers  _X_: cleanup non-existing
-  _r_: recent file                                               ^^^^_z_: cache current
-  _d_: dir
-
-"
-  ("a"   projectile-ag)
-  ("b"   projectile-switch-to-buffer)
-  ("c"   projectile-invalidate-cache)
-  ("d"   projectile-find-dir)
-  ("s-f" projectile-find-file)
-  ("ff"  projectile-find-file-dwim)
-  ("fd"  projectile-find-file-in-directory)
-  ("g"   ggtags-update-tags)
-  ("s-g" ggtags-update-tags)
-  ("i"   projectile-ibuffer)
-  ("K"   projectile-kill-buffers)
-  ("s-k" projectile-kill-buffers)
-  ("m"   projectile-multi-occur)
-  ("o"   projectile-multi-occur)
-  ("s-p" projectile-switch-project "switch project")
-  ("p"   projectile-switch-project)
-  ("s"   projectile-switch-project)
-  ("r"   projectile-recentf)
-  ("x"   projectile-remove-known-project)
-  ("X"   projectile-cleanup-known-projects)
-  ("z"   projectile-cache-current-file)
-  ("`"   hydra-projectile-other-window/body "other window")
-  ("q"   nil "cancel" :color blue))
+    ("a"   projectile-ag)
+    ("b"   projectile-switch-to-buffer)
+    ("c"   projectile-invalidate-cache)
+    ("d"   projectile-find-dir)
+    ("s-f" projectile-find-file)
+    ("ff"  projectile-find-file-dwim)
+    ("fd"  projectile-find-file-in-directory)
+    ("g"   ggtags-update-tags)
+    ("s-g" ggtags-update-tags)
+    ("i"   projectile-ibuffer)
+    ("K"   projectile-kill-buffers)
+    ("s-k" projectile-kill-buffers)
+    ("m"   projectile-multi-occur)
+    ("o"   projectile-multi-occur)
+    ("s-p" projectile-switch-project "switch project")
+    ("p"   projectile-switch-project)
+    ("s"   projectile-switch-project)
+    ("r"   projectile-recentf)
+    ("x"   projectile-remove-known-project)
+    ("X"   projectile-cleanup-known-projects)
+    ("z"   projectile-cache-current-file)
+    ("`"   hydra-projectile-other-window/body "other window")
+    ("q"   nil "cancel" :color blue))
 #+END_SRC
 * Treemacs
 #+BEGIN_SRC emacs-lisp

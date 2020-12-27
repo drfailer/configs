@@ -91,6 +91,11 @@
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 
+(set-background-color "#121214")
+;;(set-background-color "#1E2127")
+(set-frame-parameter (selected-frame) 'alpha '(85 50))
+(add-to-list 'default-frame-alist '(alpha 85 50))
+
 (use-package undo-tree
  :ensure t
  :config
@@ -523,9 +528,9 @@
       '((sequence "TODO" "STARTED" "SUSPENDED" "|" "DONE" "CANCELED")))
 
 (setq org-todo-keyword-faces
-      '(("TODO" . org-warning) ("STARTED" . "yellow")
-	("CANCELED" . (:foreground "red" :weight bold))
-	("SUSPENDED" . (:foreground "blue" :weight bold))))
+      '(("TODO" . org-warning) ("STARTED" . "#f1fa8c")
+	("CANCELED" . (:foreground "#ff5555" :weight bold))
+	("SUSPENDED" . (:foreground "#6272a4" :weight bold))))
 
 (use-package magit
   :ensure t
@@ -613,21 +618,21 @@
    :init 
    (global-set-key
    (kbd "C-* t")
-           (defhydra toggle (:color blue)
-             "toggle"
-             ("a" abbrev-mode "abbrev")
-             ("s" flyspell-mode "flyspell")
-             ("d" toggle-debug-on-error "debug")
-             ("c" fci-mode "fCi")
-             ("f" auto-fill-mode "fill")
-             ("t" toggle-truncate-lines "truncate")
-             ("w" whitespace-mode "whitespace")
-             ("q" nil "cancel")))
+	   (defhydra toggle (:color blue)
+	     "toggle"
+	     ("a" abbrev-mode "abbrev")
+	     ("s" flyspell-mode "flyspell")
+	     ("d" toggle-debug-on-error "debug")
+	     ("c" fci-mode "fCi")
+	     ("f" auto-fill-mode "fill")
+	     ("t" toggle-truncate-lines "truncate")
+	     ("w" whitespace-mode "whitespace")
+	     ("q" nil "cancel")))
    (global-set-key
     (kbd "C-x j")
     (defhydra gotoline 
       ( :pre (linum-mode 1)
-             :post (linum-mode -1))
+	     :post (linum-mode -1))
       "goto"
       ("t" (lambda () (interactive)(move-to-window-line-top-bottom 0)) "top")
       ("b" (lambda () (interactive)(move-to-window-line-top-bottom -1)) "bottom")
@@ -649,7 +654,7 @@
   ("q"  nil                                      "cancel" :color blue))
 
 (defhydra hydra-projectile (:color teal
-                            :hint nil)
+			    :hint nil)
   "
      PROJECTILE: %(projectile-project-root)
 
