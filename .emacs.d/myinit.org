@@ -113,9 +113,10 @@
 
     ;; Corrects (and improves) org-mode's native fontification.
     (doom-themes-org-config))
+(set-background-color "#1E2127")
 #+END_SRC
 *** Transparency
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC 
 (set-background-color "#121214")
 ;;(set-background-color "#1E2127")
 (set-frame-parameter (selected-frame) 'alpha '(85 50))

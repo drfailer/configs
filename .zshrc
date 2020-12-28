@@ -39,6 +39,9 @@ source $ZSH/oh-my-zsh.sh
 # Alias :
 alias lll='exa -al --color=always --group-directories-first'
 alias joke='fortune | cowsay | lolcat'
+alias pdf='pandoc -V geometry:margin=1in -o $1.pdf $1.md'
+
+alias vc='vim ~/.vimrc'
 
 eval "$(starship init zsh)"
 
