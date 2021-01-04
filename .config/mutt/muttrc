@@ -8,7 +8,7 @@ set folder    = imaps://imap.uca.fr/
 # set spoolfile = imaps://imap.uca.fr/INBOX
 set spoolfile = "+INBOX" 
 set record = "+Envoyé"
-set trash = "+Corbeille"
+set trash = "+Trash"
 set postponed = "+Brouillons"
 mailboxes =INBOX =Sent =Trash =Drafts =Other
 

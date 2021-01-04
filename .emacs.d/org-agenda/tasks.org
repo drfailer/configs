@@ -2,11 +2,23 @@
 #+author: CHASSAGNOL Rémi
 #+description: org-mode agenda and TODO list
 
-* Tasks
-** DONE [#A] Défi Turing
-- [X] Exercice 13 13:637832238736
-- [X] Exercice 50 50:8542968750
-- [X] Exercice 89 89:6948496
-site: https://www.apprendre-en-ligne.net/turing/enonces.php
-* Homeworks
-* Other
+* Work
+** TODO Portfolio
+- [ ] holidays s1 : xmonad, config, ...
+- [ ] holidays s2 : find ideas
+** TODO Math
+- [ ] Caylay Hamilton
+- [ ] Preprare a paper wtih important proof with 1st exam's exercices
+- [ ] Past years exams
+** TODO Logic
+- TD
+- exams
+** TODO PPP
+Make the presentation document and prepare oral
+* Home
+** TODO Clear bed-room
+* Personnal projects
+** TODO Encrypt smtp password for mutt
+** TODO Write a dmenu mail selector
+** SUSPENDED pls
+** SUSPENDED sokoban

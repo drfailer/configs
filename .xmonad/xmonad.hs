@@ -30,7 +30,8 @@ myBorderWidth   = 2
 myModMask       = mod4Mask
 
 myNormalBorderColor  = "#353a42"
-myFocusedBorderColor = "#5b4184"
+-- myFocusedBorderColor = "#a9a1e1"
+myFocusedBorderColor = "#2257A0"
 
 myWorkspaces :: [String]
 myWorkspaces = [ "\xf015","\xf121", "\xf07b", "\xf002", "\xf00b", "\xf1e0", "\xf001", "\xf03d", "\xf1de"]
@@ -57,7 +58,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_l     ), sendMessage Expand)
     , ((modm,               xK_t     ), withFocused $ windows . W.sink)
     , ((modm              , xK_comma ), sendMessage (IncMasterN 1))
-    , ((modm              , xK_period), sendMessage (IncMasterN (-1)))
+    , ((modm              , xK_o), sendMessage (IncMasterN (-1)))
     , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
     , ((modm              , xK_q     ), spawn "xmonad --recompile; xmonad --restart")
     , ((modm .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
