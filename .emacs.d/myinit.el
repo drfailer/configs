@@ -90,7 +90,7 @@
 
     ;; Corrects (and improves) org-mode's native fontification.
     (doom-themes-org-config))
-(set-background-color "#1E2127")
+;; (set-background-color "#1E2127")
 
 (use-package undo-tree
  :ensure t

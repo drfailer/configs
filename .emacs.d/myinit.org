@@ -113,7 +113,7 @@
 
     ;; Corrects (and improves) org-mode's native fontification.
     (doom-themes-org-config))
-(set-background-color "#1E2127")
+;; (set-background-color "#1E2127")
 #+END_SRC
 *** Transparency
 #+BEGIN_SRC 
@@ -1038,6 +1038,10 @@
 ** Clean hitory
 #+BEGIN_SRC emacs-lisp
 (setq history-delete-duplicates t)
+#+END_SRC
+** Dired
+#+BEGIN_SRC emacs-lisp
+(put 'dired-find-alternate-file 'disabled nil)
 #+END_SRC
 * Server
 #+BEGIN_SRC emacs-lisp
