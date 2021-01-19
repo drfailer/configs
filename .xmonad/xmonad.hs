@@ -58,7 +58,14 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_l     ), sendMessage Expand)
     , ((modm,               xK_t     ), withFocused $ windows . W.sink)
     , ((modm              , xK_comma ), sendMessage (IncMasterN 1))
-    , ((modm              , xK_o), sendMessage (IncMasterN (-1)))
+    , ((modm              , xK_semicolon), sendMessage (IncMasterN (-1)))
+
+    -- Spacing: windows and borders
+    , ((modm, xK_i), (incWindowSpacing 2))
+    , ((modm, xK_u), (decWindowSpacing 2))
+    , ((modm .|. shiftMask, xK_i), (incScreenSpacing 4))
+    , ((modm .|. shiftMask, xK_u), (decScreenSpacing 4))
+
     , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
     , ((modm              , xK_q     ), spawn "xmonad --recompile; xmonad --restart")
     , ((modm .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
@@ -81,11 +88,14 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
                                        >> windows W.shiftMaster)) ------------------------------ mod + button3:         Set the window to floating mode and resize by dragging
     ]
 
+mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
+mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
+
 myLayout = avoidStruts (tiled ||| Mirror tiled ||| grid ||| Full)
   where
      -- Put space between windows
-     tiled   =  spacing 6 $ Tall nmaster delta ratio
-     grid    =  spacing 6 $ Grid
+     tiled   =  mySpacing 6 $ Tall nmaster delta ratio
+     grid    =  mySpacing 6 $ Grid
      -- The default number of windows in the master pane
      nmaster = 1
      -- Default proportion of screen occupied by master pane

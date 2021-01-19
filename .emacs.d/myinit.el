@@ -861,6 +861,8 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
 
 (setq history-delete-duplicates t)
 
+(put 'dired-find-alternate-file 'disabled nil)
+
 (server-start)
 
 (use-package proced
