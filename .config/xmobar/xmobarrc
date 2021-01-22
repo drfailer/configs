@@ -4,9 +4,9 @@ Config { font = "xft:Inconsolata LGC:size=10:style=Regular"
                            , "xft:FiraMono Nerd Font Regular:pixelsize=10:antialias=true:hinting=true"
                            , "xft:FontAwesome:pixelsize=13"
                            ]
-       , borderColor = "#292d3e"
+       , borderColor = "#282c34"
        , border = TopB
-       , bgColor = "#292d3e"
+       , bgColor = "#282c34"
        , fgColor = "#bfbaba"
        , alpha = 255
        , position = TopW L 100

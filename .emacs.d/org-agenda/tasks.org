@@ -4,17 +4,11 @@
 
 * Work
 ** TODO Portfolio
-- [ ] holidays s1 : xmonad, config, ...
-- [ ] holidays s2 : find ideas
-** TODO Math
-- [ ] Caylay Hamilton
-- [ ] Preprare a paper wtih important proof with 1st exam's exercices
-- [ ] Past years exams
-** TODO Logic
-- TD
-- exams
-** TODO PPP
-Make the presentation document and prepare oral
+- [X] holidays s1 : xmonad, config, ...
+- [X] holidays s2 : find ideas
+- [ ] exam week
+- [ ] PPP oral week
+- [ ] current week
 * Home
 ** TODO Clear bed-room
 * Personnal projects

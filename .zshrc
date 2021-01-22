@@ -27,6 +27,7 @@ source $ZSH/oh-my-zsh.sh
 alias lll='exa -al --color=always --group-directories-first'
 alias joke='fortune | cowsay | lolcat'
 alias pdf='pandoc -V geometry:margin=1in -o'
+alias processing='/home/drfailer/Programming/processing-3.5.4/processing'
 
 alias vb='vim ~.zshrc'
 alias vc='vim ~/.vimrc'

@@ -61,8 +61,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm              , xK_semicolon), sendMessage (IncMasterN (-1)))
 
     -- Spacing: windows and borders
-    , ((modm, xK_i), (incWindowSpacing 2))
-    , ((modm, xK_u), (decWindowSpacing 2))
+    , ((modm, xK_i), (incWindowSpacing 4))
+    , ((modm, xK_u), (decWindowSpacing 4))
     , ((modm .|. shiftMask, xK_i), (incScreenSpacing 4))
     , ((modm .|. shiftMask, xK_u), (decScreenSpacing 4))
 
@@ -111,6 +111,7 @@ myManageHook = composeAll
      , className =? "Gimp"    --> doShift ( myWorkspaces !! 1 )
      , className =? "vimb"    --> doShift ( myWorkspaces !! 4 )
      , className =? "Gimp"    --> doFloat
+     , title =? "Processing 3.5.4" --> doFloat
      , title =? "Discord" --> doShift ( myWorkspaces !! 5 )
      , title =? "emacs@drfailer-System-Product-Name" --> doShift ( myWorkspaces !! 1 )
      , title =? "AnalyseSI v0.80 - Cairns - sans nom" --> doFloat
