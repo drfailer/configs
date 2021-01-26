@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: liste_element
+# key: <li
+# --
+<li>$0</li>

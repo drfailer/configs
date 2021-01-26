@@ -6,13 +6,12 @@
 ** TODO Portfolio
 - [X] holidays s1 : xmonad, config, ...
 - [X] holidays s2 : find ideas
-- [ ] exam week
-- [ ] PPP oral week
+- [X] exam week
+- [X] PPP oral week
 - [ ] current week
 * Home
-** TODO Clear bed-room
 * Personnal projects
 ** TODO Encrypt smtp password for mutt
-** TODO Write a dmenu mail selector
+** TODO Write a programme to convert ical file into org agenda file
 ** SUSPENDED pls
 ** SUSPENDED sokoban

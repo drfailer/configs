@@ -29,7 +29,7 @@ myClickJustFocuses = False
 myBorderWidth   = 2
 myModMask       = mod4Mask
 
-myNormalBorderColor  = "#353a42"
+myNormalBorderColor  = "#282C34"
 -- myFocusedBorderColor = "#a9a1e1"
 myFocusedBorderColor = "#2257A0"
 

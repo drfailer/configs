@@ -528,6 +528,25 @@
 	("CANCELED" . (:foreground "#ff5555" :weight bold))
 	("SUSPENDED" . (:foreground "#6272a4" :weight bold))))
 
+(add-to-list 'org-latex-packages-alist '("" "listings"))
+(setq org-latex-listings 'listings)
+(add-to-list 'org-latex-packages-alist '("" "color"))
+(setq org-latex-color 'color)
+(setq org-latex-listings t
+      org-latex-listings-options
+      '(("backgroundcolor" "\\color[gray]{0.98}")
+	("keywordstyle" "\\color{DarkOrchid}")
+	("commentstyle" "\\color{BrickRed}")
+	("stringstyle" "\\color{Red}")
+	("keepspaces" "true")
+	("deletekeywords" "{ps,scan}")
+	("basicstyle" "\\ttfamily")
+	("numbers" "left")
+	)
+      org-latex-packages-alist
+      '(("usenames,dvipsnames" "color" nil)
+	("" "listings" nil)))
+
 (use-package magit
   :ensure t
   :init
