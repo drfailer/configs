@@ -343,34 +343,43 @@
     (add-hook hook 'paredit-mode))
   :diminish paredit-mode)
 
+(setenv "PATH"
+	"/home/user/anaconda3/bin:/home/user/bin:/home/user/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/game")
 (add-hook 'python-mode-hook 'yas-minor-mode)
 (add-hook 'python-mode-hook 'flycheck-mode)
 
 (with-eval-after-load 'company
-    (add-hook 'python-mode-hook 'company-mode))
+  (add-hook 'python-mode-hook 'company-mode))
 
 (use-package company-jedi
   :ensure t
   :config
-    (require 'company)
-    (add-to-list 'company-backends 'company-jedi))
+  (require 'company)
+  (add-to-list 'company-backends 'company-jedi))
 
 (defun python-mode-company-init ()
   (setq-local company-backends '((company-jedi
-                                  company-etags
-                                  company-dabbrev-code))))
+				  company-etags
+				  company-dabbrev-code))))
 
 (use-package company-jedi
   :ensure t
   :config
-    (require 'company)
-    (add-hook 'python-mode-hook 'python-mode-company-init))
+  (require 'company)
+  (add-hook 'python-mode-hook 'python-mode-company-init))
 
 (use-package virtualenvwrapper
-          :ensure t
-          :config
-          (venv-initialize-interactive-shells)
-          (venv-initialize-eshell))
+  :ensure t
+  :config
+  (venv-initialize-interactive-shells)
+  (venv-initialize-eshell))
+
+(use-package elpy
+  :ensure t
+  :init
+  (elpy-enable))
+(setq python-shell-interpreter "python3")
+(setq elpy-rpc-python-command "python3")
 
 (add-hook 'shell-mode-hook 'yas-minor-mode)
 (add-hook 'shell-mode-hook 'flycheck-mode)
