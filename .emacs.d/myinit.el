@@ -469,6 +469,8 @@
 
 (setq org-ditaa-jar-path "/usr/bin/ditaa")
 
+(add-hook 'java-mode-hook 'semantic-mode)
+
 (org-babel-do-load-languages
    'org-babel-load-languages
    '((ditaa      . t)

@@ -586,7 +586,7 @@
  #+END_SRC
 *** Java
 #+BEGIN_SRC emacs-lisp
-(add-hook 'java-mode 'semantic-mode)
+  (add-hook 'java-mode-hook 'semantic-mode)
 #+END_SRC
 * Orgmode
 ** Babel
