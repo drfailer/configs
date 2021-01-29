@@ -437,12 +437,8 @@
     :diminish paredit-mode)
   #+END_SRC
 *** Python
- #+BEGIN_SRC emacs-lisp
-   (setenv "PATH"
-	   "/home/user/anaconda3/bin:/home/user/bin:/home/user/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/game")
-   (add-hook 'python-mode-hook 'yas-minor-mode)
-   (add-hook 'python-mode-hook 'flycheck-mode)
-
+**** company and virtualenvwrapper
+#+BEGIN_SRC emacs-lisp
    (with-eval-after-load 'company
      (add-hook 'python-mode-hook 'company-mode))
 
@@ -468,6 +464,12 @@
      :config
      (venv-initialize-interactive-shells)
      (venv-initialize-eshell))
+#+END_SRC
+**** elpy
+ #+BEGIN_SRC emacs-lisp
+   (setenv "PATH" "/home/user/anaconda3/bin:/home/user/bin:/home/user/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/game")
+   (add-hook 'python-mode-hook 'yas-minor-mode)
+   (add-hook 'python-mode-hook 'flycheck-mode)
 
    (use-package elpy
      :ensure t
@@ -582,6 +584,10 @@
  #+BEGIN_SRC emacs-lisp
  (setq org-ditaa-jar-path "/usr/bin/ditaa")
  #+END_SRC
+*** Java
+#+BEGIN_SRC emacs-lisp
+(add-hook 'java-mode 'semantic-mode)
+#+END_SRC
 * Orgmode
 ** Babel
 *** Global config
@@ -896,7 +902,7 @@
           treemacs-git-command-pipe              ""
           treemacs-goto-tag-strategy             'refetch-index
           treemacs-indentation                   2
-          treemacs-indentation-string            " "
+          treemacs-indetntation-string            " "
           treemacs-is-never-other-window         nil
           treemacs-max-git-entries               5000
           treemacs-missing-project-action        'ask
@@ -1072,6 +1078,10 @@
 ** Dired
 #+BEGIN_SRC emacs-lisp
 (put 'dired-find-alternate-file 'disabled nil)
+#+END_SRC
+** fix tabs
+#+BEGIN_SRC emacs-lisp
+(setq-default indent-tabs-mode  nil)
 #+END_SRC
 * Server
 #+BEGIN_SRC emacs-lisp

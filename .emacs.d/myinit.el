@@ -343,11 +343,6 @@
     (add-hook hook 'paredit-mode))
   :diminish paredit-mode)
 
-(setenv "PATH"
-	"/home/user/anaconda3/bin:/home/user/bin:/home/user/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/game")
-(add-hook 'python-mode-hook 'yas-minor-mode)
-(add-hook 'python-mode-hook 'flycheck-mode)
-
 (with-eval-after-load 'company
   (add-hook 'python-mode-hook 'company-mode))
 
@@ -373,6 +368,10 @@
   :config
   (venv-initialize-interactive-shells)
   (venv-initialize-eshell))
+
+(setenv "PATH" "/home/user/anaconda3/bin:/home/user/bin:/home/user/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/game")
+(add-hook 'python-mode-hook 'yas-minor-mode)
+(add-hook 'python-mode-hook 'flycheck-mode)
 
 (use-package elpy
   :ensure t
@@ -736,7 +735,7 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
           treemacs-git-command-pipe              ""
           treemacs-goto-tag-strategy             'refetch-index
           treemacs-indentation                   2
-          treemacs-indentation-string            " "
+          treemacs-indetntation-string            " "
           treemacs-is-never-other-window         nil
           treemacs-max-git-entries               5000
           treemacs-missing-project-action        'ask
@@ -890,6 +889,8 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
 (setq history-delete-duplicates t)
 
 (put 'dired-find-alternate-file 'disabled nil)
+
+(setq-default indent-tabs-mode  nil)
 
 (server-start)
 
