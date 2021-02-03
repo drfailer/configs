@@ -29,7 +29,7 @@ alias joke='fortune | cowsay | lolcat'
 alias pdf='pandoc -V geometry:margin=1in -o'
 alias processing='/home/drfailer/Programming/processing-3.5.4/processing'
 
-alias vb='vim ~.zshrc'
+alias vzsh='vim ~.zshrc'
 alias vc='vim ~/.vimrc'
 
 eval "$(starship init zsh)"

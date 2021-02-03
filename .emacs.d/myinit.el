@@ -76,21 +76,20 @@
 (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
 
 (use-package doom-themes
-    :config
-    ;; Global settings (defaults)
-    (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-	  doom-themes-enable-italic t) ; if nil, italics is universally disabled
-    (load-theme 'doom-one t)
+  :config
+  ;; Global settings (defaults)
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+	doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (load-theme 'doom-one t)
 
-    ;; Enable flashing mode-line on errors
-    (doom-themes-visual-bell-config)
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
 
-    (setq doom-themes-treemacs-theme "doom-colors") ; use the colorful treemacs theme
-    (doom-themes-treemacs-config)
+  (setq doom-themes-treemacs-theme "doom-colors") ; use the colorful treemacs theme
+  (doom-themes-treemacs-config)
 
-    ;; Corrects (and improves) org-mode's native fontification.
-    (doom-themes-org-config))
-;; (set-background-color "#1E2127")
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config))
 
 (use-package undo-tree
  :ensure t
@@ -469,7 +468,12 @@
 
 (setq org-ditaa-jar-path "/usr/bin/ditaa")
 
+;; enable correction
 (add-hook 'java-mode-hook 'semantic-mode)
+
+(add-hook 'java-mode-hook (lambda ()
+                            (setq c-basic-offset 2
+                                  tab-width 2)))
 
 (org-babel-do-load-languages
    'org-babel-load-languages
@@ -505,6 +509,7 @@
     :diminish)
 
 (setq org-ellipsis " ⬎")
+(setq org-cycle-separator-lines -1)
 
 (setq org-src-tab-acts-natively t)
 

@@ -18,6 +18,7 @@ import XMonad.Layout.Spacing
 import XMonad.Layout.Tabbed
 import XMonad.Layout.LayoutModifier
 import XMonad.Layout.Grid
+import XMonad.Layout.SimpleFloat
 
 import qualified Data.Map        as M
 
@@ -59,6 +60,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_t     ), withFocused $ windows . W.sink)
     , ((modm              , xK_comma ), sendMessage (IncMasterN 1))
     , ((modm              , xK_semicolon), sendMessage (IncMasterN (-1)))
+    , ((modm,               xK_b     ), sendMessage ToggleStruts)
 
     -- Spacing: windows and borders
     , ((modm, xK_i), (incWindowSpacing 4))
@@ -73,12 +75,12 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     ]
     ++
     [((m .|. modm, k), windows $ f i)
-	| (i, k) <- zip (XMonad.workspaces conf) [xK_F1 .. xK_F9]
-	, (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
+        | (i, k) <- zip (XMonad.workspaces conf) [xK_F1 .. xK_F9]
+        , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
     ++
     [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
-	| (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
-	, (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+        | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
+        , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
 myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm, button1), (\w -> focus w >> mouseMoveWindow w
@@ -91,11 +93,12 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
 
-myLayout = avoidStruts (tiled ||| Mirror tiled ||| grid ||| Full)
+myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full ||| float ||| grid)
   where
      -- Put space between windows
      tiled   =  mySpacing 6 $ Tall nmaster delta ratio
      grid    =  mySpacing 6 $ Grid
+     float   =  simpleFloat
      -- The default number of windows in the master pane
      nmaster = 1
      -- Default proportion of screen occupied by master pane

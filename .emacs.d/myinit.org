@@ -96,7 +96,7 @@
  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
  #+END_SRC
 ** Theme
-*** Colorscheme
+*** Doom themes
 #+BEGIN_SRC emacs-lisp
   (use-package doom-themes
     :config
@@ -113,7 +113,6 @@
 
     ;; Corrects (and improves) org-mode's native fontification.
     (doom-themes-org-config))
-;; (set-background-color "#1E2127")
 #+END_SRC
 *** Transparency
 #+BEGIN_SRC 
@@ -586,7 +585,12 @@
  #+END_SRC
 *** Java
 #+BEGIN_SRC emacs-lisp
+  ;; enable correction
   (add-hook 'java-mode-hook 'semantic-mode)
+
+  (add-hook 'java-mode-hook (lambda ()
+                              (setq c-basic-offset 2
+                                    tab-width 2)))
 #+END_SRC
 * Orgmode
 ** Babel
@@ -632,6 +636,7 @@
 ** Replace points
 #+BEGIN_SRC emacs-lisp
 (setq org-ellipsis " ⬎")
+(setq org-cycle-separator-lines -1)
 #+END_SRC
 ** Tab format
 #+BEGIN_SRC emacs-lisp

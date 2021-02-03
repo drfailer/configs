@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: header1
+# key: <1
+# --
+<h1>$0</h1>
