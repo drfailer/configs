@@ -9,6 +9,7 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.FadeInactive
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.SetWMName
 
 import XMonad.Util.Run
 import XMonad.Util.SpawnOnce
@@ -29,6 +30,9 @@ myClickJustFocuses :: Bool
 myClickJustFocuses = False
 myBorderWidth   = 2
 myModMask       = mod4Mask
+
+_JAVA_AWT_WM_NONREPARENTING=1
+--AWT_TOOLKIT=MToolkit
 
 myNormalBorderColor  = "#282C34"
 -- myFocusedBorderColor = "#a9a1e1"
@@ -134,6 +138,7 @@ myStartupHook = do
   spawnOnce "compton &"
   spawnOnce "xrandr --output HDMI-0 --primary --left-of DVI-D-0 --output DVI-D-0 --auto"
   spawnOnce "setxkbmap -layout fr -option ctrl:nocaps"
+  setWMName "LG3D"
 
 main = do
     xmproc <- spawnPipe "xmobar -x 0 ~/.config/xmobar/xmobarrc"

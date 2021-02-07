@@ -193,6 +193,8 @@
        ("C-S-<mouse-1>" . mc/add-cursor-on-click)))
 (provide 'init-multiple-cursors)
 
+(semantic-mode 1)
+
 (ivy-mode 1)
    (setq ivy-use-virtual-buffers t)
    (global-set-key (kbd "C-c C-r") 'ivy-resume)
@@ -215,6 +217,8 @@
   (define-key company-active-map (kbd "C-n") #'company-select-next)
   (define-key company-active-map (kbd "C-p") #'company-select-previous)
   (define-key company-active-map (kbd "C-f") #'company-abort))
+
+(global-set-key (kbd "C-!") 'company-complete)
 
   (use-package company-irony
     :ensure t
@@ -412,6 +416,15 @@
 (use-package gnuplot
   :ensure t)
 
+(use-package company-web
+  :ensure t)
+
+(require 'company)                                   ; load company mode
+(require 'company-web-html)                          ; load company mode html backend
+;; and/or
+(require 'company-web-jade)                          ; load company mode jade backend
+(require 'company-web-slim)                          ; load company mode slim backend
+
 (use-package htmlize
   :ensure t)
 
@@ -468,9 +481,10 @@
 
 (setq org-ditaa-jar-path "/usr/bin/ditaa")
 
-;; enable correction
-(add-hook 'java-mode-hook 'semantic-mode)
+;; Toggling java mode on processing files
+(add-to-list 'auto-mode-alist '("\\.pde?\\'" . java-mode))
 
+;; indentation settings
 (add-hook 'java-mode-hook (lambda ()
                             (setq c-basic-offset 2
                                   tab-width 2)))

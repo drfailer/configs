@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: doctype
-# key: <!
+# key: !
 # --
 <!DOCTYPE html>
 

@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: liste
-# key: <ul
+# key: ul
 # --
 <ul>
   <li>$0</li>

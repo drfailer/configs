@@ -29,8 +29,21 @@ alias joke='fortune | cowsay | lolcat'
 alias pdf='pandoc -V geometry:margin=1in -o'
 alias processing='/home/drfailer/Programming/processing-3.5.4/processing'
 
-alias vzsh='vim ~.zshrc'
+alias vzsh='vim ~/.zshrc'
 alias vc='vim ~/.vimrc'
+
+# Lauching xampp:
+
+# Alias pour permettre sudo [un_alias]
+alias sudo='sudo '
+
+# Aliases pour Xampp
+alias lampp='/opt/lampp/lampp'
+alias ctlampp='/opt/lampp/manager-linux-x64.run'
+
+# Aliases pour proftp
+alias ftpasswd='/opt/lampp/bin/ftpasswd'
+
 
 eval "$(starship init zsh)"
 

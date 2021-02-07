@@ -114,13 +114,6 @@
     ;; Corrects (and improves) org-mode's native fontification.
     (doom-themes-org-config))
 #+END_SRC
-*** Transparency
-#+BEGIN_SRC 
-(set-background-color "#121214")
-;;(set-background-color "#1E2127")
-(set-frame-parameter (selected-frame) 'alpha '(85 50))
-(add-to-list 'default-frame-alist '(alpha 85 50))
-#+END_SRC
 * Tools
 ** Handy tools
 *** Undo-tree
@@ -260,6 +253,10 @@
 (provide 'init-multiple-cursors)
 #+END_SRC
 * Completion
+** semantic-mode
+#+BEGIN_SRC emacs-lisp
+(semantic-mode 1)
+#+END_SRC
 ** Ivy
 #+BEGIN_SRC emacs-lisp
    (ivy-mode 1)
@@ -272,34 +269,36 @@
 #+END_SRC
 ** Company and irony
 #+BEGIN_SRC emacs-lisp
-(use-package company
-  :ensure t
-  :init (global-company-mode)
-  :config
-    (setq company-idle-delay 0)
-    (setq company-minimum-prefix-length 3)
-  :diminish company-mode)
-
-(with-eval-after-load 'company
-  (define-key company-active-map (kbd "M-n") nil)
-  (define-key company-active-map (kbd "M-p") nil)
-  (define-key company-active-map (kbd "C-n") #'company-select-next)
-  (define-key company-active-map (kbd "C-p") #'company-select-previous)
-  (define-key company-active-map (kbd "C-f") #'company-abort))
-
-  (use-package company-irony
+  (use-package company
     :ensure t
+    :init (global-company-mode)
     :config
-  (require 'company)
-  (add-to-list 'company-backends 'company-irony)
-  )
+      (setq company-idle-delay 0)
+      (setq company-minimum-prefix-length 3)
+    :diminish company-mode)
 
-  (use-package irony
-    :ensure t
-    :config
-    (add-hook 'c++-mode-hook 'irony-mode)
-    (add-hook 'c-mode-hook 'irony-mode)
-    (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
+  (with-eval-after-load 'company
+    (define-key company-active-map (kbd "M-n") nil)
+    (define-key company-active-map (kbd "M-p") nil)
+    (define-key company-active-map (kbd "C-n") #'company-select-next)
+    (define-key company-active-map (kbd "C-p") #'company-select-previous)
+    (define-key company-active-map (kbd "C-f") #'company-abort))
+
+  (global-set-key (kbd "C-!") 'company-complete)
+
+    (use-package company-irony
+      :ensure t
+      :config
+    (require 'company)
+    (add-to-list 'company-backends 'company-irony)
+    )
+
+    (use-package irony
+      :ensure t
+      :config
+      (add-hook 'c++-mode-hook 'irony-mode)
+      (add-hook 'c-mode-hook 'irony-mode)
+      (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
 #+END_SRC
 * Programming
 ** Indent indicator
@@ -516,7 +515,18 @@
 (use-package gnuplot
   :ensure t)
 #+END_SRC
-** Text and graph
+** web-mode
+*** Company-web
+#+BEGIN_SRC emacs-lisp
+  (use-package company-web
+    :ensure t)
+
+  (require 'company)                                   ; load company mode
+  (require 'company-web-html)                          ; load company mode html backend
+  ;; and/or
+  (require 'company-web-jade)                          ; load company mode jade backend
+  (require 'company-web-slim)                          ; load company mode slim backend
+#+END_SRC
 *** html
  #+BEGIN_SRC emacs-lisp
  (use-package htmlize
@@ -551,6 +561,12 @@
    :mode ("\\.sass\\'" "\\.scss\\'")
    :hook (scss-mode . me/scss-set-comment-style))
  #+END_SRC
+*** php :unused:
+#+BEGIN_SRC 
+  (use-package php-mode
+    :ensure t)
+#+END_SRC
+** Text and graph
 *** Markdown
  #+BEGIN_SRC emacs-lisp
  (use-package markdown-mode
@@ -585,9 +601,10 @@
  #+END_SRC
 *** Java
 #+BEGIN_SRC emacs-lisp
-  ;; enable correction
-  (add-hook 'java-mode-hook 'semantic-mode)
+  ;; Toggling java mode on processing files
+  (add-to-list 'auto-mode-alist '("\\.pde?\\'" . java-mode))
 
+  ;; indentation settings
   (add-hook 'java-mode-hook (lambda ()
                               (setq c-basic-offset 2
                                     tab-width 2)))
@@ -716,21 +733,6 @@
 (setq magit-status-margin
       '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18))
 #+END_SRC
-** Git-gutter :unused:
-#+BEGIN_SRC 
-  (use-package git-gutter
-  :ensure t
-  :init
-  (global-git-gutter-mode +1))
-
-(global-set-key (kbd "M-g M-g") 'hydra-git-gutter/body)
-#+END_SRC
-** Time-machine :unused:
-#+BEGIN_SRC 
-  (use-package git-timemachine
-  :ensure t
-  )
-#+END_SRC
 ** Git-hydra
 #+BEGIN_SRC emacs-lisp
 (use-package hydra 
@@ -792,6 +794,21 @@
               (sit-for 0.1)
               (git-gutter:clear))
    :color blue))
+#+END_SRC
+** Git-gutter :unused:
+#+BEGIN_SRC 
+  (use-package git-gutter
+  :ensure t
+  :init
+  (global-git-gutter-mode +1))
+
+(global-set-key (kbd "M-g M-g") 'hydra-git-gutter/body)
+#+END_SRC
+** Time-machine :unused:
+#+BEGIN_SRC 
+  (use-package git-timemachine
+  :ensure t
+  )
 #+END_SRC
 * Projectile and hydra
 #+BEGIN_SRC emacs-lisp
