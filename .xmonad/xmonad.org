@@ -3,6 +3,16 @@
 #+description: My xmonad config file
 #+PROPERTY: header-args :tangle xmonad.hs
 
+* Requirement :install:
+- haskell
+- xmonad
+- xmonad-contribs
+- xmobar
+- dmenu
+- j4-dmenu-desktop or personnal script
+- ranger
+- sxiv
+- zathura
 * Imports
 ** Base
 #+BEGIN_SRC haskell

@@ -586,66 +586,6 @@
 (setq magit-status-margin
       '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18))
 
-(use-package hydra 
-   :ensure hydra
-   :init 
-   (global-set-key
-   (kbd "C-* t")
-           (defhydra toggle (:color blue)
-             "toggle"
-             ("a" abbrev-mode "abbrev")
-             ("s" flyspell-mode "flyspell")
-             ("d" toggle-debug-on-error "debug")
-             ("c" fci-mode "fCi")
-             ("f" auto-fill-mode "fill")
-             ("t" toggle-truncate-lines "truncate")
-             ("w" whitespace-mode "whitespace")
-             ("q" nil "cancel")))
-   (global-set-key
-    (kbd "C-x j")
-    (defhydra gotoline 
-      ( :pre (linum-mode 1)
-             :post (linum-mode -1))
-      "goto"
-      ("t" (lambda () (interactive)(move-to-window-line-top-bottom 0)) "top")
-      ("b" (lambda () (interactive)(move-to-window-line-top-bottom -1)) "bottom")
-      ("m" (lambda () (interactive)(move-to-window-line-top-bottom)) "middle")
-      ("e" (lambda () (interactive)(end-of-buffer)) "end")
-      ("c" recenter-top-bottom "recenter")
-      ("n" next-line "down")
-      ("p" (lambda () (interactive) (forward-line -1))  "up")
-      ("g" goto-line "goto-line")
-      ))
-   )
-
-  (defhydra hydra-git-gutter (:body-pre (git-gutter-mode 1)
-                                      :hint nil)
-  "
-  Git gutter:
-    _j_: next hunk        _s_tage hunk     _q_uit
-    _k_: previous hunk    _r_evert hunk    _Q_uit and deactivate git-gutter
-    ^ ^                   _p_opup hunk
-    _h_: first hunk
-    _l_: last hunk        set start _R_evision
-  "
-  ("j" git-gutter:next-hunk)
-  ("k" git-gutter:previous-hunk)
-  ("h" (progn (goto-char (point-min))
-              (git-gutter:next-hunk 1)))
-  ("l" (progn (goto-char (point-min))
-              (git-gutter:previous-hunk 1)))
-  ("s" git-gutter:stage-hunk)
-  ("r" git-gutter:revert-hunk)
-  ("p" git-gutter:popup-hunk)
-  ("R" git-gutter:set-start-revision)
-  ("q" nil :color blue)
-  ("Q" (progn (git-gutter-mode -1)
-              ;; git-gutter-fringe doesn't seem to
-              ;; clear the markup right away
-              (sit-for 0.1)
-              (git-gutter:clear))
-   :color blue))
-
 (use-package projectile
     :ensure t
     :init

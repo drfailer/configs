@@ -1,8 +1,15 @@
 #+title: Emacs-config
 
+* Requirement :install:
+- clang
+- clang-format (most recent version)
+- libclang-dev
+- hunspell (french and english dictionary)
+- irony -> set irony server
 * Interface
-** Usefull visual tools
+** visual tweaks
 *** Cleaning
+    Removing useless stuff such as menu bar, tool bar, ... and set fullscreen.
  #+BEGIN_SRC emacs-lisp
    (setq inhibit-startup-message t)
    (scroll-bar-mode -1)
@@ -11,24 +18,12 @@
    (add-to-list 'default-frame-alist '(fullscreen . maximized))
  #+END_SRC
 *** lines
+    Set line numbers, fill mode and current line highlight.
  #+BEGIN_SRC emacs-lisp
    (global-linum-mode 1)
    (global-hl-line-mode 1)
    (setq-default auto-fill-function 'do-auto-fill)
    (setq-default fill-column 80)
- #+END_SRC
-*** Parentheses
- #+BEGIN_SRC emacs-lisp
-(show-paren-mode 1)
-
- (setq electric-pair-pairs '(
-                            (?\{ . ?\})
-                            (?\( . ?\))
-                            (?\[ . ?\])
-                            (?\" . ?\")
-                            (?\~ . ?\~)
-                            ))
- (electric-pair-mode t) 
  #+END_SRC
 ** Interface render
 *** Modeline
@@ -192,8 +187,9 @@
  #+BEGIN_SRC emacs-lisp
  (global-set-key "\M-k" '(lambda () (interactive) (kill-line 0)) )
  #+END_SRC
-** Spell-checking tools
-*** Dico
+** Spell checking tools and prog mode
+*** Dictionaries
+    Use ~C-c d~ to change dictionary language.
  #+BEGIN_SRC emacs-lisp
  (setq ispell-local-dictionary-alist- 
        '(("francais" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "fr") nil utf-8)
@@ -213,7 +209,9 @@
 
  (global-set-key (kbd "C-c d") 'switch-dictionary-fr-en)
  #+END_SRC
-*** flyspell and highlights
+*** flyspell prog mode and highlights
+    Set the automatic spell checker for prog mode and set comment highlighting
+    for specific keywords.
  #+BEGIN_SRC emacs-lisp
  (global-set-key (kbd "C-c f") 'flyspell-check-previous-highlighted-word)
  (add-hook 'text-mode-hook 'flyspell-mode)
@@ -224,12 +222,13 @@
            (lambda()
              (highlight-phrase "\\(BUG\\|FIXME\\|TODO\\|NOTE\\):")))
  #+END_SRC
-** Mail
+** Mail :useless:
+   No mail system currently setup.
 #+BEGIN_SRC emacs-lisp
 (setq user-full-name "dr failer"
       user-mail-address "drfailer.42@gmail.com")
 #+END_SRC
-** Horloge
+** Clock
 #+BEGIN_SRC emacs-lisp
 (setq display-time-24hr-format t)
 (setq display-time-format "%H:%M - %d %B %Y")
@@ -659,7 +658,7 @@
 #+BEGIN_SRC emacs-lisp
 (setq org-src-tab-acts-natively t)
 #+END_SRC
-** Export
+** Export to reveal
 #+BEGIN_SRC emacs-lisp
 (use-package ox-reveal
 :ensure t)
@@ -686,10 +685,12 @@
       ("\\.pdf\\'" . default))))
 #+END_SRC
 ** Agenda
+   Setup agenda file.
 #+BEGIN_SRC emacs-lisp
   (setq org-agenda-files (list "~/.emacs.d/org-agenda/tasks.org"))
 #+END_SRC
 ** Org keywords
+   Adding more =Todo= keywords, use ~C-c C-t~ to cycle threw them.
 #+BEGIN_SRC emacs-lisp
   (setq org-todo-keywords
 	'((sequence "TODO" "STARTED" "SUSPENDED" "|" "DONE" "CANCELED")))
@@ -700,6 +701,7 @@
 	  ("SUSPENDED" . (:foreground "#6272a4" :weight bold))))
 #+END_SRC
 ** Latex options
+   Some usefull settings for code-blocks latex export.
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'org-latex-packages-alist '("" "listings"))
   (setq org-latex-listings 'listings)
@@ -732,83 +734,6 @@
 
 (setq magit-status-margin
       '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18))
-#+END_SRC
-** Git-hydra
-#+BEGIN_SRC emacs-lisp
-(use-package hydra 
-   :ensure hydra
-   :init 
-   (global-set-key
-   (kbd "C-* t")
-           (defhydra toggle (:color blue)
-             "toggle"
-             ("a" abbrev-mode "abbrev")
-             ("s" flyspell-mode "flyspell")
-             ("d" toggle-debug-on-error "debug")
-             ("c" fci-mode "fCi")
-             ("f" auto-fill-mode "fill")
-             ("t" toggle-truncate-lines "truncate")
-             ("w" whitespace-mode "whitespace")
-             ("q" nil "cancel")))
-   (global-set-key
-    (kbd "C-x j")
-    (defhydra gotoline 
-      ( :pre (linum-mode 1)
-             :post (linum-mode -1))
-      "goto"
-      ("t" (lambda () (interactive)(move-to-window-line-top-bottom 0)) "top")
-      ("b" (lambda () (interactive)(move-to-window-line-top-bottom -1)) "bottom")
-      ("m" (lambda () (interactive)(move-to-window-line-top-bottom)) "middle")
-      ("e" (lambda () (interactive)(end-of-buffer)) "end")
-      ("c" recenter-top-bottom "recenter")
-      ("n" next-line "down")
-      ("p" (lambda () (interactive) (forward-line -1))  "up")
-      ("g" goto-line "goto-line")
-      ))
-   )
-
-  (defhydra hydra-git-gutter (:body-pre (git-gutter-mode 1)
-                                      :hint nil)
-  "
-  Git gutter:
-    _j_: next hunk        _s_tage hunk     _q_uit
-    _k_: previous hunk    _r_evert hunk    _Q_uit and deactivate git-gutter
-    ^ ^                   _p_opup hunk
-    _h_: first hunk
-    _l_: last hunk        set start _R_evision
-  "
-  ("j" git-gutter:next-hunk)
-  ("k" git-gutter:previous-hunk)
-  ("h" (progn (goto-char (point-min))
-              (git-gutter:next-hunk 1)))
-  ("l" (progn (goto-char (point-min))
-              (git-gutter:previous-hunk 1)))
-  ("s" git-gutter:stage-hunk)
-  ("r" git-gutter:revert-hunk)
-  ("p" git-gutter:popup-hunk)
-  ("R" git-gutter:set-start-revision)
-  ("q" nil :color blue)
-  ("Q" (progn (git-gutter-mode -1)
-              ;; git-gutter-fringe doesn't seem to
-              ;; clear the markup right away
-              (sit-for 0.1)
-              (git-gutter:clear))
-   :color blue))
-#+END_SRC
-** Git-gutter :unused:
-#+BEGIN_SRC 
-  (use-package git-gutter
-  :ensure t
-  :init
-  (global-git-gutter-mode +1))
-
-(global-set-key (kbd "M-g M-g") 'hydra-git-gutter/body)
-#+END_SRC
-** Time-machine :unused:
-#+BEGIN_SRC 
-  (use-package git-timemachine
-  :ensure t
-  )
 #+END_SRC
 * Projectile and hydra
 #+BEGIN_SRC emacs-lisp
@@ -1048,6 +973,7 @@
 (global-unset-key (kbd "C-z"))
 #+END_SRC
 *** Mouving
+    Some fonctions to move faster.
 #+BEGIN_SRC emacs-lisp
   (defun mvup() (interactive)
 	 (previous-line 3)
@@ -1059,7 +985,7 @@
 	 )
   (global-set-key (kbd "M-n") 'mvdown)
 #+END_SRC
-** Asynchrone
+** Asynchronous
 #+BEGIN_SRC emacs-lisp
 (use-package async
   :ensure t
@@ -1098,6 +1024,7 @@
 (setq history-delete-duplicates t)
 #+END_SRC
 ** Dired
+   For browsing file within dired using ~a~ without openning new buffers.
 #+BEGIN_SRC emacs-lisp
 (put 'dired-find-alternate-file 'disabled nil)
 #+END_SRC
@@ -1105,6 +1032,20 @@
 #+BEGIN_SRC emacs-lisp
 (setq-default indent-tabs-mode  nil)
 #+END_SRC
+** Brackets
+    Electric pair and show parent mode for brackets completion.
+ #+BEGIN_SRC emacs-lisp
+(show-paren-mode 1)
+
+ (setq electric-pair-pairs '(
+                            (?\{ . ?\})
+                            (?\( . ?\))
+                            (?\[ . ?\])
+                            (?\" . ?\")
+                            (?\~ . ?\~)
+                            ))
+ (electric-pair-mode t) 
+ #+END_SRC
 * Server
 #+BEGIN_SRC emacs-lisp
 (server-start)
@@ -1140,4 +1081,43 @@
   :hook (after-init-hook . global-auto-revert-mode))
 
   (setq global-auto-revert-mode t)
+#+END_SRC
+** Git-hydra :unused:
+#+BEGIN_SRC
+  (defhydra hydra-git-gutter (:body-pre (git-gutter-mode 1)
+                                      :hint nil)
+  "
+  Git gutter:
+    _j_: next hunk        _s_tage hunk     _q_uit
+    _k_: previous hunk    _r_evert hunk    _Q_uit and deactivate git-gutter
+    ^ ^                   _p_opup hunk
+    _h_: first hunk
+    _l_: last hunk        set start _R_evision
+  "
+  ("j" git-gutter:next-hunk)
+  ("k" git-gutter:previous-hunk)
+  ("h" (progn (goto-char (point-min))
+              (git-gutter:next-hunk 1)))
+  ("l" (progn (goto-char (point-min))
+              (git-gutter:previous-hunk 1)))
+  ("s" git-gutter:stage-hunk)
+  ("r" git-gutter:revert-hunk)
+  ("p" git-gutter:popup-hunk)
+  ("R" git-gutter:set-start-revision)
+  ("q" nil :color blue)
+  ("Q" (progn (git-gutter-mode -1)
+              ;; git-gutter-fringe doesn't seem to
+              ;; clear the markup right away
+              (sit-for 0.1)
+              (git-gutter:clear))
+   :color blue))
+#+END_SRC
+** Git-gutter :unused:
+#+BEGIN_SRC 
+  (use-package git-gutter
+  :ensure t
+  :init
+  (global-git-gutter-mode +1))
+
+(global-set-key (kbd "M-g M-g") 'hydra-git-gutter/body)
 #+END_SRC
