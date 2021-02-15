@@ -44,6 +44,7 @@ import XMonad.Layout.Tabbed
 import XMonad.Layout.LayoutModifier
 import XMonad.Layout.Grid
 import XMonad.Layout.SimpleFloat
+import XMonad.Layout.NoBorders
 #+END_SRC
 ** Data
 #+BEGIN_SRC haskell
@@ -164,12 +165,13 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
   mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
   mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
 
-  myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full ||| float ||| grid)
+  myLayout = avoidStruts (tiled ||| Mirror tiled ||| full ||| float ||| grid)
     where
        -- Put space between windows
        tiled   =  mySpacing 6 $ Tall nmaster delta ratio
        grid    =  mySpacing 6 $ Grid
        float   =  simpleFloat
+       full    =  noBorders Full
        -- The default number of windows in the master pane
        nmaster = 1
        -- Default proportion of screen occupied by master pane
@@ -187,7 +189,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
        , className =? "Gimp"    --> doShift ( myWorkspaces !! 1 )
        , className =? "vimb"    --> doShift ( myWorkspaces !! 4 )
        , className =? "Gimp"    --> doFloat
-       , title =? "Processing 3.5.4" --> doFloat
+       , title =? "Processing Camera" --> doFloat
        , title =? "Discord" --> doShift ( myWorkspaces !! 5 )
        , title =? "emacs@drfailer-System-Product-Name" --> doShift ( myWorkspaces !! 1 )
        , title =? "AnalyseSI v0.80 - Cairns - sans nom" --> doFloat

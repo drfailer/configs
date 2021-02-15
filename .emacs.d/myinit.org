@@ -43,12 +43,16 @@
 #+END_SRC
 **** Spaceline all the icons
 #+BEGIN_SRC emacs-lisp
-(use-package spaceline-all-the-icons 
-  :ensure t
-  :after spaceline
-  :config (spaceline-all-the-icons-theme)
-  (spaceline-all-the-icons--setup-anzu)
-  )
+  (use-package spaceline-all-the-icons 
+    :ensure t
+    :after spaceline
+    :config (spaceline-all-the-icons-theme)
+    (spaceline-all-the-icons--setup-anzu)
+    (spaceline-all-the-icons--setup-git-ahead)
+    )
+
+    (setq spaceline-all-the-icons-highlight-file-name t)
+    (setq spaceline-all-the-icons-hide-long-buffer-path t)
 #+END_SRC
 *** Dashboard
  #+BEGIN_SRC emacs-lisp

@@ -29,22 +29,20 @@ alias joke='fortune | cowsay | lolcat'
 alias pdf='pandoc -V geometry:margin=1in -o'
 alias processing='/home/drfailer/Programming/processing-3.5.4/processing'
 
-alias vzsh='vim ~/.zshrc'
+alias vs='vim ~/.zshrc'
 alias vc='vim ~/.vimrc'
 
-# Lauching xampp:
+# Alias for compilation:
+alias ccomp='gcc -Wall -Wextra -o'
 
-# Alias pour permettre sudo [un_alias]
-alias sudo='sudo '
+# sdl flags
+alias SDLA='`sdl-config --cflags --libs`'
 
-# Aliases pour Xampp
-alias lampp='/opt/lampp/lampp'
-alias ctlampp='/opt/lampp/manager-linux-x64.run'
+alias jcomp='javac *.java'
+alias jcompsb='javac -d /buid /src/**/*.java'
+alias jcomp-class='javac -Xlint:all'
 
-# Aliases pour proftp
-alias ftpasswd='/opt/lampp/bin/ftpasswd'
-
-
+# Starship prompt:
 eval "$(starship init zsh)"
 
 # For bare repo :

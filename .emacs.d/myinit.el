@@ -9,17 +9,6 @@
 (setq-default auto-fill-function 'do-auto-fill)
 (setq-default fill-column 80)
 
-(show-paren-mode 1)
-
- (setq electric-pair-pairs '(
-                            (?\{ . ?\})
-                            (?\( . ?\))
-                            (?\[ . ?\])
-                            (?\" . ?\")
-                            (?\~ . ?\~)
-                            ))
- (electric-pair-mode t)
-
 (use-package spaceline
   :ensure t
   :config
@@ -37,7 +26,11 @@
   :after spaceline
   :config (spaceline-all-the-icons-theme)
   (spaceline-all-the-icons--setup-anzu)
+  (spaceline-all-the-icons--setup-git-ahead)
   )
+
+  (setq spaceline-all-the-icons-highlight-file-name t)
+  (setq spaceline-all-the-icons-hide-long-buffer-path t)
 
 (use-package dashboard
 :ensure t
@@ -852,6 +845,17 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
 (put 'dired-find-alternate-file 'disabled nil)
 
 (setq-default indent-tabs-mode  nil)
+
+(show-paren-mode 1)
+
+ (setq electric-pair-pairs '(
+                            (?\{ . ?\})
+                            (?\( . ?\))
+                            (?\[ . ?\])
+                            (?\" . ?\")
+                            (?\~ . ?\~)
+                            ))
+ (electric-pair-mode t)
 
 (server-start)
 
