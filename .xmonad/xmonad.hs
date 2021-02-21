@@ -21,6 +21,7 @@ import XMonad.Layout.LayoutModifier
 import XMonad.Layout.Grid
 import XMonad.Layout.SimpleFloat
 import XMonad.Layout.NoBorders
+import XMonad.Layout.ThreeColumns
 
 import qualified Data.Map        as M
 
@@ -98,13 +99,14 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
 
-myLayout = avoidStruts (tiled ||| Mirror tiled ||| full ||| float ||| grid)
+myLayout = avoidStruts (tiled ||| Mirror tiled ||| full ||| float ||| treeCols ||| grid)
   where
      -- Put space between windows
-     tiled   =  mySpacing 6 $ Tall nmaster delta ratio
-     grid    =  mySpacing 6 $ Grid
-     float   =  simpleFloat
-     full    =  noBorders Full
+     tiled    =  mySpacing 6 $ Tall nmaster delta ratio
+     treeCols =  mySpacing 6 $ ThreeColMid nmaster delta ratio
+     grid     =  mySpacing 6 $ Grid
+     float    =  simpleFloat
+     full     =  noBorders Full
      -- The default number of windows in the master pane
      nmaster = 1
      -- Default proportion of screen occupied by master pane

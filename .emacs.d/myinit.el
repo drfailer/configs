@@ -63,11 +63,6 @@
   (add-to-list 'all-the-icons-ivy-file-commands 'counsel-find-library)
   (all-the-icons-ivy-setup))
 
-(use-package all-the-icons-dired
-  :ensure t)
-
-(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
-
 (use-package doom-themes
   :config
   ;; Global settings (defaults)
@@ -842,8 +837,6 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
 
 (setq history-delete-duplicates t)
 
-(put 'dired-find-alternate-file 'disabled nil)
-
 (setq-default indent-tabs-mode  nil)
 
 (show-paren-mode 1)
@@ -856,6 +849,15 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
                             (?\~ . ?\~)
                             ))
  (electric-pair-mode t)
+
+(define-key dired-mode-map "b" 'dired-up-directory)
+(global-set-key (kbd "C-x C-j") 'dired-jump)
+(put 'dired-find-alternate-file 'disabled nil)
+
+(use-package all-the-icons-dired
+  :ensure t)
+
+(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
 
 (server-start)
 

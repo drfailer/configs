@@ -3,15 +3,8 @@
 #+description: org-mode agenda and TODO list
 
 * Work
-** TODO Portfolio
-- [X] holidays s1 : xmonad, config, ...
-- [X] holidays s2 : find ideas
-- [X] exam week
-- [X] PPP oral week
-- [ ] current week
 * Home
-* Personnal projects
+* Personal projects
 ** TODO Encrypt smtp password for mutt
-** TODO Write a programme to convert ical file into org agenda file
-** SUSPENDED pls
+** TODO Write a program to convert ical file into org agenda file
 ** SUSPENDED sokoban
