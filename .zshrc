@@ -49,5 +49,21 @@ eval "$(starship init zsh)"
 # be sure tu run : config config --local status.showUntrackedFiles no
 alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 
+# customize pfetch:
+export PF_INFO="ascii title os host kernel uptime pkgs memory"
+export PF_SEP=":"
+export PF_COLOR=1
+export PF_COL1=4
+export PF_COL2=3
+export PF_COL3=5
+export PF_ALIGN="10"
+export PF_ASCII="linux"
+export USER="drfailer"
+export HOSTNAME="drfailer-computer"
+export EDITOR="emacs"
+export SHELL="zsh"
+export XDG_CURRENT_DESKTOP="xmonad"
+
+
 # Startup :
 pfetch
