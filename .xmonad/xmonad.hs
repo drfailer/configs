@@ -65,8 +65,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     , ((modm,               xK_h     ), sendMessage Shrink)
     , ((modm,               xK_l     ), sendMessage Expand)
-    , ((modm .|. shiftMask, xK_h     ), sendMessage MirrorShrink)
-    , ((modm .|. shiftMask, xK_l     ), sendMessage MirrorExpand)
+    , ((modm .|. shiftMask, xK_l     ), sendMessage MirrorShrink)
+    , ((modm .|. shiftMask, xK_h     ), sendMessage MirrorExpand)
 
     , ((modm,               xK_t     ), withFocused $ windows . W.sink)
     , ((modm              , xK_comma ), sendMessage (IncMasterN 1))

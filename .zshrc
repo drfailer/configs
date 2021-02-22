@@ -24,8 +24,9 @@ source $ZSH/oh-my-zsh.sh
 # export ARCHFLAGS="-arch x86_64"
 
 # Alias :
+alias ll='ls -alF'
+alias la='ls -A'
 alias lll='exa -al --color=always --group-directories-first'
-alias joke='fortune | cowsay | lolcat'
 alias pdf='pandoc -V geometry:margin=1in -o'
 alias processing='/home/drfailer/Programming/processing-3.5.4/processing'
 
@@ -34,6 +35,10 @@ alias vc='vim ~/.vimrc'
 
 # Alias for compilation:
 alias ccomp='gcc -Wall -Wextra -o'
+
+# Scripts:
+alias dotf='bash $HOME/.scripts/dotf.sh'
+alias cleaner='bash $HOME/.scripts/cleaner.sh'
 
 # sdl flags
 alias SDLA='`sdl-config --cflags --libs`'
