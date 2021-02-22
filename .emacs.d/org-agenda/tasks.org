@@ -3,6 +3,8 @@
 #+description: org-mode agenda and TODO list
 
 * Work
+** TODO portfolio week before holydays
+** TODO portfolio holidays week
 * Home
 * Personal projects
 ** TODO Encrypt smtp password for mutt

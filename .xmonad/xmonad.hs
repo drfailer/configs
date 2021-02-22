@@ -22,6 +22,7 @@ import XMonad.Layout.Grid
 import XMonad.Layout.SimpleFloat
 import XMonad.Layout.NoBorders
 import XMonad.Layout.ThreeColumns
+import XMonad.Layout.ResizableTile
 
 import qualified Data.Map        as M
 
@@ -61,8 +62,12 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_Return), windows W.swapMaster)
     , ((modm .|. shiftMask, xK_j     ), windows W.swapDown  )
     , ((modm .|. shiftMask, xK_k     ), windows W.swapUp    )
+
     , ((modm,               xK_h     ), sendMessage Shrink)
     , ((modm,               xK_l     ), sendMessage Expand)
+    , ((modm .|. shiftMask, xK_h     ), sendMessage MirrorShrink)
+    , ((modm .|. shiftMask, xK_l     ), sendMessage MirrorExpand)
+
     , ((modm,               xK_t     ), withFocused $ windows . W.sink)
     , ((modm              , xK_comma ), sendMessage (IncMasterN 1))
     , ((modm              , xK_semicolon), sendMessage (IncMasterN (-1)))
@@ -102,7 +107,7 @@ mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
 myLayout = avoidStruts (tiled ||| Mirror tiled ||| full ||| float ||| treeCols ||| grid)
   where
      -- Put space between windows
-     tiled    =  mySpacing 6 $ Tall nmaster delta ratio
+     tiled    =  mySpacing 6 $ ResizableTall nmaster delta ratio []
      treeCols =  mySpacing 6 $ ThreeColMid nmaster delta ratio
      grid     =  mySpacing 6 $ Grid
      float    =  simpleFloat
