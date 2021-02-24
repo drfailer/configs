@@ -120,12 +120,9 @@ myLayout = avoidStruts (tiled ||| Mirror tiled ||| full ||| float ||| treeCols |
 
 myManageHook :: XMonad.Query (Data.Monoid.Endo WindowSet)
 myManageHook = composeAll
-     [ className =? "obs"     --> doShift ( myWorkspaces !! 8 )
-     , className =? "mpv"     --> doShift ( myWorkspaces !! 7 )
-     , className =? "vlc"     --> doShift ( myWorkspaces !! 8 )
-     , className =? "Gimp"    --> doShift ( myWorkspaces !! 1 )
-     , className =? "vimb"    --> doShift ( myWorkspaces !! 4 )
+     [ className =? "vlc"     --> doShift ( myWorkspaces !! 8 )
      , className =? "Gimp"    --> doFloat
+     , title =? "sxiv"    --> doFloat
      , title =? "Processing Camera" --> doFloat
      , title =? "Discord" --> doShift ( myWorkspaces !! 5 )
      , title =? "emacs@drfailer-System-Product-Name" --> doShift ( myWorkspaces !! 1 )

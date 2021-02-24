@@ -44,7 +44,7 @@ alias cleaner='bash $HOME/.scripts/cleaner.sh'
 alias SDLA='`sdl-config --cflags --libs`'
 
 alias jcomp='javac *.java'
-alias jcompsb='javac -d /buid /src/**/*.java'
+alias jcompsb='javac -d build src/**/*.java'
 alias jcomp-class='javac -Xlint:all'
 
 # Starship prompt:
@@ -69,6 +69,9 @@ export EDITOR="emacs"
 export SHELL="zsh"
 export XDG_CURRENT_DESKTOP="xmonad"
 
+# Use bat for manual printing
+alias bat='batcat'
+export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 
 # Startup :
 pfetch
