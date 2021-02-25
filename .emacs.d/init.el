@@ -14,3 +14,17 @@
         (package-install 'use-package))
 
 (org-babel-load-file (expand-file-name "~/.emacs.d/myinit.org"))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (yasnippet-snippets xterm-color xcscope which-key wgrep-ag web-mode virtualenvwrapper use-package treemacs-projectile treemacs-persp treemacs-magit treemacs-icons-dired treemacs-evil spaceline-all-the-icons slime-company scss-mode popup-kill-ring php-mode paredit ox-twbs ox-reveal org-bullets multiple-cursors markdown-mode hungry-delete htmlize highlight-indent-guides helm-projectile haskell-mode graphviz-dot-mode gnuplot ggtags flycheck-clang-analyzer expand-region elpy doom-themes dashboard counsel company-web company-shell company-jedi company-irony company-c-headers clang-format+ autothemer all-the-icons-ivy all-the-icons-dired))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(aw-leading-char-face ((t (:inherit ace-jump-face-foreground :height 7.0)))))

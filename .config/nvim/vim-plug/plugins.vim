@@ -42,6 +42,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " require npm i -g yarn
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " Better java highlight
-    " Plug 'nvim-treesitter/nvim-treesitter'
+    " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 call plug#end()
