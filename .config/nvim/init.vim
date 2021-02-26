@@ -10,7 +10,7 @@ source $HOME/.config/nvim/vim-plug/plugins.vim
 " settings
 source $HOME/.config/nvim/general/settings.vim
 
-" general mappings
+" mappings
 source $HOME/.config/nvim/keys/mappings.vim
 
 " themes
