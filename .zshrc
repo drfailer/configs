@@ -39,6 +39,7 @@ alias ccomp='gcc -Wall -Wextra -o'
 # Scripts:
 alias dotf='bash $HOME/.scripts/dotf.sh'
 alias cleaner='bash $HOME/.scripts/cleaner.sh'
+alias updater='bash $HOME/.scripts/updater.sh'
 
 # sdl flags
 alias SDLA='`sdl-config --cflags --libs`'

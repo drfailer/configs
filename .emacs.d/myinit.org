@@ -110,16 +110,6 @@
 #+END_SRC
 * Tools
 ** Handy tools
-*** Undo-tree
- #+BEGIN_SRC emacs-lisp
-   (use-package undo-tree
-   :ensure t
-   :config
-  (progn
-     (global-undo-tree-mode)
-     (setq undo-tree-visualizer-timestamps t)
-     (setq undo-tree-visualizer-diff t)))
- #+END_SRC
 *** kill-ring
  #+BEGIN_SRC emacs-lisp
  (setq kill-ring-max 100) ;; passer la taille du kill-ring à 100 (par défaut 60)
@@ -221,12 +211,6 @@
            (lambda()
              (highlight-phrase "\\(BUG\\|FIXME\\|TODO\\|NOTE\\):")))
  #+END_SRC
-** Mail :useless:
-   No mail system currently setup.
-#+BEGIN_SRC emacs-lisp
-(setq user-full-name "dr failer"
-      user-mail-address "drfailer.42@gmail.com")
-#+END_SRC
 ** Clock
 #+BEGIN_SRC emacs-lisp
 (setq display-time-24hr-format t)
@@ -508,6 +492,16 @@
     :ensure t
     )
 #+END_SRC
+*** Java
+#+BEGIN_SRC emacs-lisp
+;; Toggling java mode on processing files
+(add-to-list 'auto-mode-alist '("\\.pde?\\'" . java-mode))
+
+;; indentation settings
+(add-hook 'java-mode-hook (lambda ()
+                            (setq c-basic-offset 2
+                                  tab-width 2)))
+#+END_SRC
 ** Gnuplot
 #+BEGIN_SRC emacs-lisp
 (use-package gnuplot
@@ -597,16 +591,6 @@
  #+BEGIN_SRC emacs-lisp
  (setq org-ditaa-jar-path "/usr/bin/ditaa")
  #+END_SRC
-*** Java
-#+BEGIN_SRC emacs-lisp
-  ;; Toggling java mode on processing files
-  (add-to-list 'auto-mode-alist '("\\.pde?\\'" . java-mode))
-
-  ;; indentation settings
-  (add-hook 'java-mode-hook (lambda ()
-                              (setq c-basic-offset 2
-                                    tab-width 2)))
-#+END_SRC
 * Orgmode
 ** Babel
 *** Global config

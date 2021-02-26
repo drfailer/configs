@@ -8,18 +8,22 @@ nnoremap <M-k>    :resize +2<CR>
 nnoremap <M-h>    :vertical resize -2<CR>
 nnoremap <M-l>    :vertical resize +2<CR>
 
-" I hate escape more than anything else
+" Ib hate escape more than anything else
 inoremap jk <Esc>
 inoremap kj <Esc>
+inoremap kl <Esc>la
 
 " Easy CAPS
 inoremap <c-u> <ESC>viwUea
 nnoremap <c-u> viwU<Esc>
 
-" TAB in general mode will move to text buffer
-nnoremap <TAB> :bnext<CR>
-" SHIFT-TAB will go back
-nnoremap <S-TAB> :bprevious<CR>
+" navigate threw buffers
+nnoremap <Leader>nb :bnext<CR>
+nnoremap <Leader>bp :bprevious<CR>
+" navigate threw tabs
+nnoremap <Leader>tn :tabnew<CR>
+nnoremap <Leader>nt :tabnext<CR>
+nnoremap <Leader>tp :tabprevious<CR>
 
 " Use control-c instead of escape
 nnoremap <C-c> <Esc>

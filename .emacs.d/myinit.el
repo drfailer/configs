@@ -79,14 +79,6 @@
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 
-(use-package undo-tree
- :ensure t
- :config
-(progn
-   (global-undo-tree-mode)
-   (setq undo-tree-visualizer-timestamps t)
-   (setq undo-tree-visualizer-diff t)))
-
 (setq kill-ring-max 100) ;; passer la taille du kill-ring à 100 (par défaut 60)
 (use-package popup-kill-ring
   :ensure t
@@ -160,9 +152,6 @@
 (add-hook 'find-file-hook
           (lambda()
             (highlight-phrase "\\(BUG\\|FIXME\\|TODO\\|NOTE\\):")))
-
-(setq user-full-name "dr failer"
-      user-mail-address "drfailer.42@gmail.com")
 
 (setq display-time-24hr-format t)
 (setq display-time-format "%H:%M - %d %B %Y")
@@ -401,6 +390,14 @@
   :ensure t
   )
 
+;; Toggling java mode on processing files
+(add-to-list 'auto-mode-alist '("\\.pde?\\'" . java-mode))
+
+;; indentation settings
+(add-hook 'java-mode-hook (lambda ()
+                            (setq c-basic-offset 2
+                                  tab-width 2)))
+
 (use-package gnuplot
   :ensure t)
 
@@ -468,14 +465,6 @@
   :ensure t)
 
 (setq org-ditaa-jar-path "/usr/bin/ditaa")
-
-;; Toggling java mode on processing files
-(add-to-list 'auto-mode-alist '("\\.pde?\\'" . java-mode))
-
-;; indentation settings
-(add-hook 'java-mode-hook (lambda ()
-                            (setq c-basic-offset 2
-                                  tab-width 2)))
 
 (org-babel-do-load-languages
    'org-babel-load-languages

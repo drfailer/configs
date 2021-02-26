@@ -1,3 +1,10 @@
+"        _                       _             
+" __   _(_)_ __ ___        _ __ | |_   _  __ _ 
+" \ \ / / | '_ ` _ \ _____| '_ \| | | | |/ _` |
+"  \ V /| | | | | | |_____| |_) | | |_| | (_| |
+"   \_/ |_|_| |_| |_|     | .__/|_|\__,_|\__, |
+"                         |_|            |___/
+
 " auto-install vim-plug
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
@@ -43,5 +50,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " Better java highlight
     " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    " pretty icons
+    Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
