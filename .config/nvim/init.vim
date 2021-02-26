@@ -7,7 +7,7 @@
 " Plug
 source $HOME/.config/nvim/vim-plug/plugins.vim
 
-" settings
+" general settings
 source $HOME/.config/nvim/general/settings.vim
 
 " mappings
