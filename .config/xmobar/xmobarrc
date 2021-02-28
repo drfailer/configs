@@ -4,7 +4,7 @@ Config { font = "xft:Inconsolata LGC:size=10:style=Regular"
                            , "xft:FiraMono Nerd Font Regular:pixelsize=10:antialias=true:hinting=true"
                            , "xft:FontAwesome:pixelsize=13"
                            ]
-       , borderColor = "#282c34"
+       , borderColor = "#000000"
        , border = TopB
        , bgColor = "#282c34"
        , fgColor = "#bfbaba"
@@ -19,9 +19,9 @@ Config { font = "xft:Inconsolata LGC:size=10:style=Regular"
        , iconRoot = "."
        , allDesktops = True
        , overrideRedirect = True
-       , commands = [ Run Network "enp3s0" ["-t", " <fn=2></fn> <rx>kb  <fn=2></fn> <tx>kb"] 20
+       , commands = [ Run Network "enp3s0" ["-t", " <fn=2></fn> <rx>kb  <fn=2></fn> <tx>kb"] 20
                     , Run Cpu [ "-L", "3", "-H", "50" ,"--normal", "#c3e88d" ,"--high", "#f07178" ] 20
-                    , Run Memory ["-t" ,"Mem: <usedratio>%", ""] 20
+                    , Run Memory ["-t" ,"mem: <usedratio>%", ""] 20
                     , Run Date "%a %b %_d %Y %H:%M" "date" 50
                     , Run DiskU [("/", "<fn=2>\xf0c7</fn>  hdd: <free> free")] [] 60
                     -- , Run Battery ["-t", "<left>%"] 10 <fc=#ff79c6><fn=2></fn> %batter% </fc>

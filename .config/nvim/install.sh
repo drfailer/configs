@@ -4,9 +4,7 @@
 echo "installing fzf dependancies"
 apt install fzf universal-ctags silversearcher-ag fd-find
 # if problem with ripgrep, charge the ppa
-add-apt-repository ppa:x4121/ripgrep
-apt-get update
-apt-get install ripgrep 
+sudo apt install -o Dpkg::Options::="--force-overwrite" ripgrep
 
 
 # used for coco it requires alse node

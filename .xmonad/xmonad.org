@@ -72,7 +72,8 @@ myFocusedBorderColor = "#2257A0"
 * Workspaces
 #+BEGIN_SRC haskell
 myWorkspaces :: [String]
-myWorkspaces = [ "\xf015","\xf121", "\xf07b", "\xf002", "\xf00b", "\xf1e0", "\xf001", "\xf03d", "\xf1de"]
+myWorkspaces = [ "main","dev", "doc", "www", "buff", "chat", "msc", "vid", "sys"]
+-- myWorkspaces = [ "\xf015","\xf121", "\xf07b", "\xf002", "\xf00b", "\xf1e0", "\xf001", "\xf03d", "\xf1de"]
 #+END_SRC
 * Window count
 #+BEGIN_SRC haskell
@@ -96,12 +97,12 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
       , ((modm,               xK_Return), windows W.swapMaster)
       , ((modm .|. shiftMask, xK_j     ), windows W.swapDown  )
       , ((modm .|. shiftMask, xK_k     ), windows W.swapUp    )
-    
+
       , ((modm,               xK_h     ), sendMessage Shrink)
       , ((modm,               xK_l     ), sendMessage Expand)
       , ((modm .|. shiftMask, xK_l     ), sendMessage MirrorShrink)
       , ((modm .|. shiftMask, xK_h     ), sendMessage MirrorExpand)
-    
+
       , ((modm,               xK_t     ), withFocused $ windows . W.sink)
       , ((modm              , xK_comma ), sendMessage (IncMasterN 1))
       , ((modm              , xK_semicolon), sendMessage (IncMasterN (-1)))
@@ -246,12 +247,12 @@ main = do
         , mouseBindings      = myMouseBindings
         , logHook = myLogHook <+> dynamicLogWithPP xmobarPP 
                         { ppOutput = hPutStrLn xmproc
-                        , ppCurrent = xmobarColor "#ECBE7B" "" . wrap "[" "]"
+                        , ppCurrent = xmobarColor "#E5C07B" "" . wrap "[" "]"
                         , ppHiddenNoWindows = xmobarColor "#c792ea" ""
                         , ppHidden = xmobarColor "#82AAFF" "" . wrap "*" ""
-                        , ppTitle   = xmobarColor "#82AAFF"  "" . shorten 60
+                        , ppTitle   = xmobarColor "#a9a1e1"  "" . shorten 40
                         , ppSep =  "<fc=#666666> | </fc>"
-                        , ppVisible = xmobarColor "#ECBE7B" ""
+                        , ppVisible = xmobarColor "#E5C07B" ""
                         , ppUrgent  = xmobarColor "red" "yellow"
                         , ppExtras  = [windowCount]
                         }

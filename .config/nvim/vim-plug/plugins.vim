@@ -18,7 +18,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " Better Syntax Support
     Plug 'sheerun/vim-polyglot'
     " File Explorer
-    Plug 'scrooloose/NERDTree'
+    " Plug 'scrooloose/NERDTree'
     " Auto pairs for '(' '[' '{'
     Plug 'jiangmiao/auto-pairs'
     " Theme
@@ -42,7 +42,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " goyo
     Plug 'junegunn/goyo.vim'
     " Trigger autocompletion
-    Plug 'vim-scripts/AutoComplPop'
+    " Plug 'vim-scripts/AutoComplPop'
     " snippets
     Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
     " coc

@@ -42,7 +42,8 @@ myNormalBorderColor  = "#282C34"
 myFocusedBorderColor = "#2257A0"
 
 myWorkspaces :: [String]
-myWorkspaces = [ "\xf015","\xf121", "\xf07b", "\xf002", "\xf00b", "\xf1e0", "\xf001", "\xf03d", "\xf1de"]
+myWorkspaces = [ "main","dev", "doc", "www", "buff", "chat", "msc", "vid", "sys"]
+-- myWorkspaces = [ "\xf015","\xf121", "\xf07b", "\xf002", "\xf00b", "\xf1e0", "\xf001", "\xf03d", "\xf1de"]
 
 windowCount :: X (Maybe String)
 windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
@@ -165,12 +166,12 @@ main = do
         , mouseBindings      = myMouseBindings
         , logHook = myLogHook <+> dynamicLogWithPP xmobarPP 
                         { ppOutput = hPutStrLn xmproc
-                        , ppCurrent = xmobarColor "#ECBE7B" "" . wrap "[" "]"
+                        , ppCurrent = xmobarColor "#E5C07B" "" . wrap "[" "]"
                         , ppHiddenNoWindows = xmobarColor "#c792ea" ""
                         , ppHidden = xmobarColor "#82AAFF" "" . wrap "*" ""
-                        , ppTitle   = xmobarColor "#82AAFF"  "" . shorten 60
+                        , ppTitle   = xmobarColor "#a9a1e1"  "" . shorten 40
                         , ppSep =  "<fc=#666666> | </fc>"
-                        , ppVisible = xmobarColor "#ECBE7B" ""
+                        , ppVisible = xmobarColor "#E5C07B" ""
                         , ppUrgent  = xmobarColor "red" "yellow"
                         , ppExtras  = [windowCount]
                         }

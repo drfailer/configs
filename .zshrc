@@ -30,8 +30,8 @@ alias lll='exa -al --color=always --group-directories-first'
 alias pdf='pandoc -V geometry:margin=1in -o'
 alias processing='/home/drfailer/Programming/processing-3.5.4/processing'
 
-alias vs='vim ~/.zshrc'
-alias vc='vim ~/.vimrc'
+alias vs='nvim ~/.zshrc'
+alias vc='nvim ~/.vimrc'
 
 # Alias for compilation:
 alias ccomp='gcc -Wall -Wextra -o'
