@@ -330,7 +330,7 @@
  #+BEGIN_SRC emacs-lisp
    (use-package clang-format+
      :ensure t)
-   (load "~/.emacs.d/elpa/clang-format-20191121.1708/clang-format.el")
+   (load "~/.emacs.d/elpa/clang-format-20191106.950/clang-format.el")
    (add-hook 'c-mode-common-hook #'clang-format+-mode)
    (add-hook 'c-mode-common-hook
 	     (lambda ()
@@ -586,10 +586,6 @@
  #+BEGIN_SRC emacs-lisp
  (use-package graphviz-dot-mode
    :ensure t)
- #+END_SRC
-*** Ditaa
- #+BEGIN_SRC emacs-lisp
- (setq org-ditaa-jar-path "/usr/bin/ditaa")
  #+END_SRC
 * Orgmode
 ** Babel
@@ -1039,17 +1035,6 @@
 * Server
 #+BEGIN_SRC emacs-lisp
 (server-start)
-#+END_SRC
-* Gadgets
-** Processus
-#+BEGIN_SRC emacs-lisp
-(use-package proced
-:commands proced
-:config
-(setq proced-auto-update-flag t)
-(setq proced-auto-update-interval 1)
-(setq proced-descend t)
-(setq proced-filter 'user))
 #+END_SRC
 * Unused packages
 ** Dracula theme :unused:

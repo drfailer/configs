@@ -249,7 +249,7 @@
 
 (use-package clang-format+
   :ensure t)
-(load "~/.emacs.d/elpa/clang-format-20191121.1708/clang-format.el")
+(load "~/.emacs.d/elpa/clang-format-20191106.950/clang-format.el")
 (add-hook 'c-mode-common-hook #'clang-format+-mode)
 (add-hook 'c-mode-common-hook
 	  (lambda ()
@@ -463,8 +463,6 @@
 
 (use-package graphviz-dot-mode
   :ensure t)
-
-(setq org-ditaa-jar-path "/usr/bin/ditaa")
 
 (org-babel-do-load-languages
    'org-babel-load-languages
@@ -849,11 +847,3 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
 (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
 
 (server-start)
-
-(use-package proced
-:commands proced
-:config
-(setq proced-auto-update-flag t)
-(setq proced-auto-update-interval 1)
-(setq proced-descend t)
-(setq proced-filter 'user))

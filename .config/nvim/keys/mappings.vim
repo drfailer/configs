@@ -9,13 +9,12 @@ nnoremap <M-h>    :vertical resize -2<CR>
 nnoremap <M-l>    :vertical resize +2<CR>
 
 " Ib hate escape more than anything else
-inoremap jk <Esc>
+" inoremap jk <Esc>
 inoremap kj <Esc>
 inoremap kl <Esc>la
 
 " Easy CAPS
 inoremap <c-u> <ESC>viwUea
-nnoremap <c-u> viwU<Esc>
 
 " navigate threw buffers
 nnoremap <Leader>nb :bnext<CR>
