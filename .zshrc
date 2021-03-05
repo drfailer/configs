@@ -49,6 +49,7 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 #                                 Alias :                                       #
 #################################################################################
 # generals:
+alias v='nvim'
 alias la='ls -A'
 alias ll='exa -al --color=always --group-directories-first'
 alias pdf='pandoc -V geometry:margin=1in -o'

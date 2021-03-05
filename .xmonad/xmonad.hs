@@ -169,7 +169,7 @@ main = do
                         , ppCurrent = xmobarColor "#E5C07B" "" . wrap "[" "]"
                         , ppHiddenNoWindows = xmobarColor "#c792ea" ""
                         , ppHidden = xmobarColor "#82AAFF" "" . wrap "*" ""
-                        , ppTitle   = xmobarColor "#a9a1e1"  "" . shorten 40
+                        , ppTitle   = xmobarColor "#a9a1e1"  "" . shorten 30
                         , ppSep =  "<fc=#666666> | </fc>"
                         , ppVisible = xmobarColor "#E5C07B" ""
                         , ppUrgent  = xmobarColor "red" "yellow"
