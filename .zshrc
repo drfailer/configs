@@ -53,6 +53,7 @@ alias v='nvim'
 alias la='ls -A'
 alias ll='exa -al --color=always --group-directories-first'
 alias pdf='pandoc -V geometry:margin=1in -o'
+alias graph='dot -Tpng -o'
 alias processing='/home/drfailer/Programming/processing-3.5.4/processing'
 
 # book marks:
@@ -76,6 +77,11 @@ alias SDLA='`sdl-config --cflags --libs`'
 alias jcomp='javac *.java'
 alias jcompsb='javac -d build src/**/*.java'
 alias jcompclass='javac -Xlint:all'
+
+# sound:
+alias mute='amixer -D pulse sset Master mute'
+alias unmute='amixer -D pulse sset Master unmute'
+alias setsound='amixer -D pulse sset Master'
 
 # For bare repo :
 # be sure tu run : config config --local status.showUntrackedFiles no
